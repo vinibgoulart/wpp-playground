@@ -1,0 +1,10 @@
+node_modules/
+.env
+
+credentials.json
+
+.wwebjs_auth/
+.wwebjs_cache/
+.DS_Store
+
+dist/
