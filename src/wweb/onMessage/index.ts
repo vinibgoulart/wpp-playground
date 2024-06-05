@@ -1,9 +1,10 @@
 import { client } from '../client';
-import defaultMessage from './resume/defaultMessage';
+import authorMessage from './authorMessage';
 import drakeMessage from './drakeMessage';
 import gptMessage from './gptMessage';
 import incrivelMessage from './incrivelMessage';
 import quoteMessage from './quoteMessage';
+import defaultMessage from './resume/defaultMessage';
 import resumeMessage from './resume/resumeMessage';
 import resumeStartMessage from './resume/resumeStartMessage';
 import resumeStopMessage from './resume/resumeStopMessage';
@@ -15,8 +16,9 @@ export const onMessage = () => {
       // gpt commands
       case msg.body.startsWith('!gpt'):
         return gptMessage(msg);
-
       // memes commands
+      case msg.body.startsWith('!author'):
+        return authorMessage(msg);
       case msg.body.startsWith('!quote'):
         return quoteMessage(msg);
       case msg.body.startsWith('!drake'):
