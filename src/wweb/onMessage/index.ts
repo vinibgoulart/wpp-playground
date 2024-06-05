@@ -1,5 +1,5 @@
 import { client } from '../client';
-import authorMessage from './authorMessage';
+import authorMessage from './meme/authorMessage';
 import drakeMessage from './meme/drakeMessage';
 import gptMessage from './gptMessage';
 import incrivelMessage from './meme/incrivelMessage';

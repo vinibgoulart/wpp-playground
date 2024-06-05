@@ -1,7 +1,7 @@
 import Jimp from 'jimp';
 import { Message, MessageMedia } from 'whatsapp-web.js';
-import { getBase64 } from '../../jimp/getBase64';
-import { splitTextIntoLines } from '../../jimp/strings';
+import { getBase64 } from '../../../jimp/getBase64';
+import { splitTextIntoLines } from '../../../jimp/strings';
 
 const authorMessage = async (msg: Message) => {
   try {
