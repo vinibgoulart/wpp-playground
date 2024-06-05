@@ -2,6 +2,7 @@ import Jimp from 'jimp';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { getBase64 } from '../../../jimp/getBase64';
 import { splitTextIntoLines } from '../../../jimp/strings';
+import { middleware } from '../../middleware/middleware';
 
 const authorMessage = async (msg: Message) => {
   try {
@@ -57,4 +58,4 @@ const authorMessage = async (msg: Message) => {
   }
 };
 
-export default authorMessage;
+export default middleware(authorMessage);

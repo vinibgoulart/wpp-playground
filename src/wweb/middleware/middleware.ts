@@ -8,11 +8,17 @@ type MiddlewareOptions = {
 
 export const middleware = (
   next: (msg: Message) => unknown,
-  { isListening = false, onlyOwner = false }: MiddlewareOptions,
+  { isListening = false, onlyOwner = false }: MiddlewareOptions = {},
 ) => {
   return async (msg: Message) => {
+    // if onlyOwner is true, the message will only be processed if it is sent by the owner,
+    // otherwise it will only be processed if it is not sent by the owner
     if (onlyOwner) {
       if (!msg.fromMe) {
+        return;
+      }
+    } else {
+      if (msg.fromMe) {
         return;
       }
     }

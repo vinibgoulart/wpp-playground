@@ -5,6 +5,7 @@ import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import { quoteExamples } from '../../../imgflip/quote/quoteExamples';
 import { getBase64 } from '../../../jimp/getBase64';
 import { splitTextIntoLines } from '../../../jimp/strings';
+import { middleware } from '../../middleware/middleware';
 
 const getRandomTemplate = () =>
   quoteExamples[Math.floor(Math.random() * quoteExamples.length)];
@@ -72,4 +73,4 @@ const quoteMessage = async (msg: Message) => {
   });
 };
 
-export default quoteMessage;
+export default middleware(quoteMessage);

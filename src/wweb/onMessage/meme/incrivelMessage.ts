@@ -1,6 +1,7 @@
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
+import { middleware } from '../../middleware/middleware';
 
 const incrivelMessage = async (msg: Message) => {
   if (!msg.body) {
@@ -35,4 +36,4 @@ const incrivelMessage = async (msg: Message) => {
   });
 };
 
-export default incrivelMessage;
+export default middleware(incrivelMessage);

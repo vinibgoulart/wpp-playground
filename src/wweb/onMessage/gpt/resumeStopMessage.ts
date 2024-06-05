@@ -26,5 +26,4 @@ const resumeStopMessage = async (msg: Message) => {
 
 export default middleware(resumeStopMessage, {
   isListening: true,
-  onlyOwner: true,
 });

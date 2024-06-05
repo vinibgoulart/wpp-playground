@@ -1,6 +1,7 @@
 import { Message } from 'whatsapp-web.js';
 import { openai } from '../../../openai/openaiApi';
 import { OPENAI_MODEL_ENUM } from '../../../openai/openaiModelEnum';
+import { middleware } from '../../middleware/middleware';
 
 const gptMessage = async (msg: Message) => {
   if (!msg.body) {
@@ -36,4 +37,4 @@ const gptMessage = async (msg: Message) => {
   }
 };
 
-export default gptMessage;
+export default middleware(gptMessage);
