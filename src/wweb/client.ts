@@ -1,8 +1,8 @@
 import { Client, LocalAuth } from 'whatsapp-web.js';
-import { onReady } from './onReady';
-import { onMessage } from './onMessage';
 import { onAuthFailure } from './onAuthFailure';
+import { onMessage } from './onMessage';
 import { onQrCode } from './onQrCode';
+import { onReady } from './onReady';
 
 const wwebVersion = '2.2412.54';
 

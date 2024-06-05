@@ -1,7 +1,7 @@
-import { Message, MessageMedia } from 'whatsapp-web.js';
-import { quoteExamples } from '../../imgflip/quote/quoteExamples';
-import { imgflipCaption } from '../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
+import { Message, MessageMedia } from 'whatsapp-web.js';
+import { imgflipCaption } from '../../imgflip/imgflipCaption';
+import { quoteExamples } from '../../imgflip/quote/quoteExamples';
 
 const quoteMessage = async (msg: Message) => {
   if (!msg.body) {
@@ -30,7 +30,6 @@ const quoteMessage = async (msg: Message) => {
   }
 
   const base64 = await imageToBase64(imgFlipCaptionResult.url);
-
   const replyMedia = new MessageMedia('image/png', base64);
 
   msg.reply(replyMedia, undefined, {
