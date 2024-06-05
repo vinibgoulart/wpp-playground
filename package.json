@@ -5,11 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "concurrently \"npm run watch-compile\" \"npm run watch-dev\"",
-    "watch-compile": "swc src -w --out-dir dist --copy-files",
-    "watch-dev": "nodemon --watch \"dist/**/*\" -e js ./dist/index.js",
     "build": "swc src -d dist --copy-files",
     "start": "NODE_ENV=production node dist/index.js",
-    "clean": "rm -rf dist"
+    "env:example": "cp .env.example .env"
   },
   "keywords": [],
   "author": "",
