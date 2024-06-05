@@ -12,6 +12,10 @@ import tigerMessage from './tigerMessage';
 
 export const onMessage = () => {
   client.on('message_create', async (msg) => {
+    if (msg.fromMe) {
+      return;
+    }
+
     switch (true) {
       // gpt commands
       case msg.body.startsWith('!gpt'):

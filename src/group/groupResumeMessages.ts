@@ -51,7 +51,7 @@ const groupResumeMessages = async (args: IGroupResumeMessagesArgs) => {
 
   const parseMessages = () => {
     return notResumedMessages
-      .map((msg) => `${msg.sender.split(' ')[0]}: ${msg.message}`)
+      .map((msg) => msg.sender && `${msg.sender.split(' ')[0]}: ${msg.message}`)
       .join('\n');
   };
 
