@@ -15,11 +15,6 @@ import tigerMessage from './meme/tigerMessage';
 export const onMessage = () => {
   client.on('message_create', async (msg) => {
     switch (true) {
-      // help commands
-      case msg.body === '!help-meme':
-        return helpMemeMessage(msg);
-      case msg.body === '!help-gpt':
-        return helpGptMessage(msg);
       // gpt commands
       case msg.body.startsWith('!gpt'):
         return gptMessage(msg);
