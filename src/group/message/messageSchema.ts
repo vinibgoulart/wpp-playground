@@ -5,7 +5,7 @@ export type IMessage = {
   message: string;
   sender: string;
   time: Date;
-  resumedAt: Date;
+  resumedAt?: Date;
 };
 
 type MessageDocument = Document & IMessage;

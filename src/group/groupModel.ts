@@ -5,8 +5,8 @@ import { IMessage, messageSchema } from './message/messageSchema';
 type IGroup = {
   groupId: string;
   isListening: boolean;
-  lastResume: Date;
-  resumesQty: number;
+  lastResume?: Date;
+  resumesQty?: number;
   messages: IMessage[];
 };
 
