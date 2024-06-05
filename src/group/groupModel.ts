@@ -6,6 +6,7 @@ type IGroup = {
   groupId: string;
   isListening: boolean;
   lastResume: Date;
+  resumesQty: number;
   messages: IMessage[];
 };
 
@@ -30,6 +31,12 @@ const GroupSchema = new Schema<GroupDocument>(
       type: Date,
       required: false,
       description: 'Group lastResume',
+    },
+    resumesQty: {
+      type: Number,
+      required: false,
+      description: 'Group resumesQty',
+      default: 0,
     },
     messages: {
       type: [messageSchema],
