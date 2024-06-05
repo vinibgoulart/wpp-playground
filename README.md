@@ -59,14 +59,4 @@ The main goal of this project is to provide an efficient way to summarize group 
 
 - Read the QRCode in your whatsapp
 
-- Go to a group and run `!resume-start` to start to listen messages
-
-- When you want to resume the messages, run `!resume`
-
-## API Reference
-
-| Input           | Description                                                   |
-| :-------------- | :------------------------------------------------------------ |
-| `!resume-start` | Start to listend new messages to resume                       |
-| `!resume-stop`  | Stop to listend new messages to resume                        |
-| `!resume`       | Resume the messages saved, after resume the messages restored |
+- Run `!help-meme` or `!help-gpt` to see the available commands
