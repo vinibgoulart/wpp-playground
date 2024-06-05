@@ -3,7 +3,7 @@ import { Schema } from 'mongoose';
 import {
   groupConfigGptSchema,
   IGroupConfigGpt,
-} from './gpt/grouConfigGptSchema';
+} from './gpt/groupConfigGptSchema';
 
 export type IGroupConfig = {
   gpt: IGroupConfigGpt;

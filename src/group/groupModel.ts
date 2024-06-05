@@ -8,6 +8,7 @@ type IGroup = {
   isListening: boolean;
   lastResume?: Date;
   resumesQty?: number;
+  resumeDailySigned: boolean;
   messages: IMessage[];
   config: IGroupConfig;
 };
@@ -39,6 +40,12 @@ const GroupSchema = new Schema<GroupDocument>(
       required: false,
       description: 'Group resumesQty',
       default: 0,
+    },
+    resumeDailySigned: {
+      type: Boolean,
+      required: true,
+      default: false,
+      description: 'GroupConfigGpt resumeDailySigned',
     },
     messages: {
       type: [messageSchema],
