@@ -31,7 +31,6 @@ export const onMessage = () => {
         return incrivelMessage(msg);
       case msg.body.startsWith('!tiger'):
         return tigerMessage(msg);
-
       // resume commands
       case msg.body === '!resume-start':
         return resumeStartMessage(msg);

@@ -15,6 +15,9 @@ const quoteMessage = async (msg: Message) => {
   }
 
   const quote = await msg.getQuotedMessage();
+  if (quote.fromMe) {
+    return msg.reply('You cannot quote yourself');
+  }
   const text0 = quote.body ?? '';
   const text1 = msg.body.replace('!quote', '').trim();
 

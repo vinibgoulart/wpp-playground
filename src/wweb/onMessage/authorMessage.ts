@@ -6,6 +6,10 @@ import { splitTextIntoLines } from '../../jimp/strings';
 const authorMessage = async (msg: Message) => {
   try {
     const quote = await msg.getQuotedMessage();
+    if (quote.fromMe) {
+      return msg.reply('You cannot quote yourself');
+    }
+
     const contact = await (quote || msg).getContact();
     const profilePic = await contact.getProfilePicUrl();
     const image = await Jimp.read(profilePic);
