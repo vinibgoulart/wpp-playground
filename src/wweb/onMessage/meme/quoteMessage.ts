@@ -1,10 +1,10 @@
 import imageToBase64 from 'image-to-base64';
 import Jimp from 'jimp';
 import { Message, MessageMedia } from 'whatsapp-web.js';
-import { imgflipCaption } from '../../imgflip/imgflipCaption';
-import { quoteExamples } from '../../imgflip/quote/quoteExamples';
-import { getBase64 } from '../../jimp/getBase64';
-import { splitTextIntoLines } from '../../jimp/strings';
+import { imgflipCaption } from '../../../imgflip/imgflipCaption';
+import { quoteExamples } from '../../../imgflip/quote/quoteExamples';
+import { getBase64 } from '../../../jimp/getBase64';
+import { splitTextIntoLines } from '../../../jimp/strings';
 
 const getRandomTemplate = () =>
   quoteExamples[Math.floor(Math.random() * quoteExamples.length)];

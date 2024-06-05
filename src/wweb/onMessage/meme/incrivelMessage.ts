@@ -1,5 +1,5 @@
 import { Message, MessageMedia } from 'whatsapp-web.js';
-import { imgflipCaption } from '../../imgflip/imgflipCaption';
+import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
 
 const incrivelMessage = async (msg: Message) => {

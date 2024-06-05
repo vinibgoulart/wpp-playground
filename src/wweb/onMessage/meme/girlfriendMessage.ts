@@ -1,14 +1,14 @@
 import { Message, MessageMedia } from 'whatsapp-web.js';
-import { imgflipCaption } from '../../imgflip/imgflipCaption';
+import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
 
-const drakeMessage = async (msg: Message) => {
+const girlfriendMessage = async (msg: Message) => {
   if (!msg.body) {
     return;
   }
 
   const [text0, text1] = msg.body
-    .replace('!drake', '')
+    .replace('!girlfriend', '')
     .split('-')
     .map((text) => text.trim());
 
@@ -17,7 +17,7 @@ const drakeMessage = async (msg: Message) => {
   }
 
   const imgFlipCaptionResult = await imgflipCaption({
-    randomTemplatedId: '181913649',
+    randomTemplatedId: '112126428',
     text0,
     text1,
   });
@@ -35,4 +35,4 @@ const drakeMessage = async (msg: Message) => {
   });
 };
 
-export default drakeMessage;
+export default girlfriendMessage;
