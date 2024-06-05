@@ -25,19 +25,17 @@ const redact = (msg: Chunk) => {
 
 const subscribeToLogs = () => {
   const createWriteStream = (kind: 'stdout' | 'stderr') => {
+    const originalWrite =
+      kind === 'stdout' ? process.stdout.write : process.stderr.write;
+
     return (
       chunk: Chunk,
       cbOrEncoding?: BufferEncoding | ErrorCallback,
       cb?: ErrorCallback,
     ) => {
       logs.push({ kind, chunk: redact(chunk) });
-      if (!cb) {
-        if (typeof cbOrEncoding === 'function') {
-          cbOrEncoding();
-        }
-        return true;
-      }
-      cb();
+      // @ts-expect-error
+      originalWrite.apply(process[kind], [chunk, cbOrEncoding, cb]);
       return true;
     };
   };

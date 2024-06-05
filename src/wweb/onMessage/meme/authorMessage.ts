@@ -7,12 +7,14 @@ import { middleware } from '../../middleware/middleware';
 const authorMessage = async (msg: Message) => {
   try {
     const quote = await msg.getQuotedMessage();
-    if (quote.fromMe) {
-      return msg.reply('You cannot quote yourself');
-    }
 
     const contact = await (quote || msg).getContact();
     const profilePic = await contact.getProfilePicUrl();
+    if (!profilePic) {
+      return msg.reply(
+        "The author of the message doesn't have a profile picture.",
+      );
+    }
     const image = await Jimp.read(profilePic);
 
     let text = msg.body.replace('!author', '').trim();
