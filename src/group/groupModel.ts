@@ -1,6 +1,7 @@
 import { Document } from 'mongodb';
 import { model, Schema } from 'mongoose';
 import { IMessage, messageSchema } from './message/messageSchema';
+import { groupConfigSchema, IGroupConfig } from './config/groupConfigSchema';
 
 type IGroup = {
   groupId: string;
@@ -8,6 +9,7 @@ type IGroup = {
   lastResume?: Date;
   resumesQty?: number;
   messages: IMessage[];
+  config: IGroupConfig;
 };
 
 export type GroupDocument = Document & IGroup;
@@ -43,6 +45,12 @@ const GroupSchema = new Schema<GroupDocument>(
       required: false,
       description: 'Group messages',
       default: [],
+    },
+    config: {
+      type: groupConfigSchema,
+      ref: 'GroupConfig',
+      required: true,
+      description: 'GroupConfig',
     },
     removedAt: {
       type: Date,
