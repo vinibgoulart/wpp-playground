@@ -5,6 +5,7 @@ export type IMessage = {
   message: string;
   sender: string;
   time: Date;
+  resumedAt: Date;
 };
 
 type MessageDocument = Document & IMessage;
@@ -25,6 +26,11 @@ const messageSchema = new Schema<MessageDocument>(
       type: Date,
       required: false,
       description: 'Time',
+    },
+    resumedAt: {
+      type: Date,
+      required: false,
+      description: 'Resumed At',
     },
   },
   {

@@ -16,32 +16,41 @@ const groupResumeMessages = async (args: IGroupResumeMessagesArgs) => {
     groupId: payload.groupId,
     removedAt: null,
     isListening: true,
-  });
-
-  console.log({ group });
+  }).lean();
 
   if (!group) {
     return null;
   }
 
-  if (!group.messages.length) {
+  const notResumedMessages = group.messages.filter((msg) => !msg.resumedAt);
+
+  if (!notResumedMessages.length) {
     return 'No messages to resume';
   }
+
+  const messagesUpdated = notResumedMessages.map((msg) => ({
+    ...msg,
+    resumedAt: new Date(),
+  }));
+
+  const messagesNotUpdated = group.messages.filter((msg) => msg.resumedAt);
 
   await GroupModel.findOneAndUpdate(
     {
       groupId: payload.groupId,
+      removedAt: null,
+      isListening: true,
     },
     {
       $set: {
-        messages: [],
         lastResume: new Date(),
+        messages: [...messagesNotUpdated, ...messagesUpdated],
       },
     },
   );
 
   const parseMessages = () => {
-    return group.messages
+    return notResumedMessages
       .map((msg) => `${msg.sender.split(' ')[0]}: ${msg.message}`)
       .join('\n');
   };
