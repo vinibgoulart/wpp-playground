@@ -1,6 +1,6 @@
 import { Message } from 'whatsapp-web.js';
-import { middleware } from '../../middleware/middleware';
-import { messageCreate } from '../../../group/message/messageCreate';
+import { middleware } from '../middleware/middleware';
+import { messageCreate } from '../../group/message/messageCreate';
 
 const defaultMessage = async (msg: Message) => {
   if (!msg.body) {

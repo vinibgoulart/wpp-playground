@@ -4,7 +4,7 @@ import drakeMessage from './meme/drakeMessage';
 import gptMessage from './gpt/gptMessage';
 import incrivelMessage from './meme/incrivelMessage';
 import quoteMessage from './meme/quoteMessage';
-import defaultMessage from './gpt/defaultMessage';
+import defaultMessage from './defaultMessage';
 import resumeMessage from './gpt/resumeMessage';
 import resumeStartMessage from './gpt/resumeStartMessage';
 import resumeStopMessage from './gpt/resumeStopMessage';
