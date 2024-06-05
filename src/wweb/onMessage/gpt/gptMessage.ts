@@ -1,6 +1,6 @@
 import { Message } from 'whatsapp-web.js';
-import { openai } from '../../openai/openaiApi';
-import { OPENAI_MODEL_ENUM } from '../../openai/openaiModelEnum';
+import { openai } from '../../../openai/openaiApi';
+import { OPENAI_MODEL_ENUM } from '../../../openai/openaiModelEnum';
 
 const gptMessage = async (msg: Message) => {
   if (!msg.body) {

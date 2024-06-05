@@ -1,13 +1,13 @@
 import { client } from '../client';
 import authorMessage from './meme/authorMessage';
 import drakeMessage from './meme/drakeMessage';
-import gptMessage from './gptMessage';
+import gptMessage from './gpt/gptMessage';
 import incrivelMessage from './meme/incrivelMessage';
 import quoteMessage from './meme/quoteMessage';
-import defaultMessage from './resume/defaultMessage';
-import resumeMessage from './resume/resumeMessage';
-import resumeStartMessage from './resume/resumeStartMessage';
-import resumeStopMessage from './resume/resumeStopMessage';
+import defaultMessage from './gpt/defaultMessage';
+import resumeMessage from './gpt/resumeMessage';
+import resumeStartMessage from './gpt/resumeStartMessage';
+import resumeStopMessage from './gpt/resumeStopMessage';
 import tigerMessage from './meme/tigerMessage';
 
 export const onMessage = () => {
