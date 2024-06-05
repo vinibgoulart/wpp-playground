@@ -1,17 +1,17 @@
 import { client } from '../client';
-import authorMessage from './meme/authorMessage';
-import drakeMessage from './meme/drakeMessage';
-import gptMessage from './gpt/gptMessage';
-import incrivelMessage from './meme/incrivelMessage';
-import quoteMessage from './meme/quoteMessage';
+import logsMessage from './debug/logs';
 import defaultMessage from './defaultMessage';
+import gptMessage from './gpt/gptMessage';
 import resumeMessage from './gpt/resumeMessage';
 import resumeStartMessage from './gpt/resumeStartMessage';
 import resumeStopMessage from './gpt/resumeStopMessage';
-import tigerMessage from './meme/tigerMessage';
-import helpMemeMessage from './help/helpMemeMessage';
 import helpGptMessage from './help/helpGptMessage';
-
+import helpMemeMessage from './help/helpMemeMessage';
+import authorMessage from './meme/authorMessage';
+import drakeMessage from './meme/drakeMessage';
+import incrivelMessage from './meme/incrivelMessage';
+import quoteMessage from './meme/quoteMessage';
+import tigerMessage from './meme/tigerMessage';
 export const onMessage = () => {
   client.on('message_create', async (msg) => {
     switch (true) {
@@ -41,6 +41,8 @@ export const onMessage = () => {
         return resumeMessage(msg);
       case msg.body === '!resume-stop':
         return resumeStopMessage(msg);
+      case msg.body === '!logs':
+        return logsMessage(msg);
       default:
         return defaultMessage(msg);
     }
