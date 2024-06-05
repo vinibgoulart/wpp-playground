@@ -9,10 +9,17 @@ import resumeMessage from './gpt/resumeMessage';
 import resumeStartMessage from './gpt/resumeStartMessage';
 import resumeStopMessage from './gpt/resumeStopMessage';
 import tigerMessage from './meme/tigerMessage';
+import helpMemeMessage from './help/helpMemeMessage';
+import helpGptMessage from './help/helpGptMessage';
 
 export const onMessage = () => {
   client.on('message_create', async (msg) => {
     switch (true) {
+      // help commands
+      case msg.body === '!help-meme':
+        return helpMemeMessage(msg);
+      case msg.body === '!help-gpt':
+        return helpGptMessage(msg);
       // gpt commands
       case msg.body.startsWith('!gpt'):
         return gptMessage(msg);
