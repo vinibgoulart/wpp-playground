@@ -1,6 +1,6 @@
 import { Message } from 'whatsapp-web.js';
-import { groupResumeMessages } from '../../group/groupResumeMessages';
-import { middleware } from '../middleware/middleware';
+import { groupResumeMessages } from '../../../group/groupResumeMessages';
+import { middleware } from '../../middleware/middleware';
 
 const resumeMessage = async (msg: Message) => {
   if (!msg.body) {

@@ -6,8 +6,6 @@ The service is built using several technologies including TypeScript for static 
 
 The main goal of this project is to provide an efficient way to summarize group conversations, making it easier to catch up on missed discussions.
 
-https://github.com/vinibgoulart/wpp-resume-ai/assets/88122830/a0f491bd-85f9-403c-9804-e9a609892dfb
-
 ## Service created using
 
 - typescript
@@ -61,14 +59,14 @@ https://github.com/vinibgoulart/wpp-resume-ai/assets/88122830/a0f491bd-85f9-403c
 
 - Read the QRCode in your whatsapp
 
-- Go to a group and run `!start` to start to listen messages
+- Go to a group and run `!resume-start` to start to listen messages
 
 - When you want to resume the messages, run `!resume`
 
 ## API Reference
 
-| Input     | Description                                                   |
-| :-------- | :------------------------------------------------------------ |
-| `!start`  | Start to listend new messages to resume                       |
-| `!stop`   | Stop to listend new messages to resume                        |
-| `!resume` | Resume the messages saved, after resume the messages restored |
+| Input           | Description                                                   |
+| :-------------- | :------------------------------------------------------------ |
+| `!resume-start` | Start to listend new messages to resume                       |
+| `!resume-stop`  | Stop to listend new messages to resume                        |
+| `!resume`       | Resume the messages saved, after resume the messages restored |
