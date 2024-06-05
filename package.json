@@ -5,6 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "concurrently \"npm run watch-compile\" \"npm run watch-dev\"",
+    "watch-compile": "swc src -w --out-dir dist --copy-files",
+    "watch-dev": "nodemon --watch \"dist/**/*\" -e js ./dist/index.js",
     "build": "swc src -d dist --copy-files",
     "start": "NODE_ENV=production node dist/index.js",
     "env:example": "cp .env.example .env"
@@ -19,6 +21,8 @@
     "googleapis": "105",
     "i18n": "^0.15.1",
     "image-to-base64": "^2.2.0",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.1",
     "openai": "^4.47.3",
     "qrcode-terminal": "^0.12.0",
     "swc": "^1.0.11",

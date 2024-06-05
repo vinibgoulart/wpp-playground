@@ -10,9 +10,11 @@ dotenvSafe.config({
   sample: root('.env.example'),
 });
 
-const { OPENAI_API_KEY, IMGFLIP_USERNAME, IMGFLIP_PASSWORD } = process.env;
+const { MONGO_URI, OPENAI_API_KEY, IMGFLIP_USERNAME, IMGFLIP_PASSWORD } =
+  process.env;
 
 export const config = {
+  MONGO_URI,
   OPENAI_API_KEY,
   IMGFLIP_USERNAME,
   IMGFLIP_PASSWORD,

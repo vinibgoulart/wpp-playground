@@ -19,6 +19,7 @@ export const client = new Client({
 });
 
 export const connectClient = () => {
+  console.log('Connecting to WhatsApp Web...');
   client.initialize();
 
   onQrCode();
