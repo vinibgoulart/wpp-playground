@@ -5,8 +5,6 @@ import gptMessage from './gpt/gptMessage';
 import resumeMessage from './gpt/resumeMessage';
 import resumeStartMessage from './gpt/resumeStartMessage';
 import resumeStopMessage from './gpt/resumeStopMessage';
-import helpGptMessage from './help/helpGptMessage';
-import helpMemeMessage from './help/helpMemeMessage';
 import authorMessage from './meme/authorMessage';
 import drakeMessage from './meme/drakeMessage';
 import incrivelMessage from './meme/incrivelMessage';

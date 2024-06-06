@@ -1,16 +1,16 @@
 import { Document } from 'mongodb';
 import { model, Schema } from 'mongoose';
 import { IMessage, messageSchema } from './message/messageSchema';
-import { groupConfigSchema, IGroupConfig } from './config/groupConfigSchema';
+import { groupGptSchema, IGroupGpt } from './gpt/groupGptSchema';
+import { groupResumeSchema, IGroupResume } from './resume/resumeSchema';
 
 type IGroup = {
   groupId: string;
   isListening: boolean;
-  lastResume?: Date;
-  resumesQty?: number;
-  resumeDailySigned: boolean;
   messages: IMessage[];
-  config: IGroupConfig;
+  resume: IGroupResume;
+  gpt: IGroupGpt;
+  lng: string;
 };
 
 export type GroupDocument = Document & IGroup;
@@ -30,34 +30,27 @@ const GroupSchema = new Schema<GroupDocument>(
       index: true,
       description: 'Group isListening',
     },
-    lastResume: {
-      type: Date,
-      required: false,
-      description: 'Group lastResume',
-    },
-    resumesQty: {
-      type: Number,
-      required: false,
-      description: 'Group resumesQty',
-      default: 0,
-    },
-    resumeDailySigned: {
-      type: Boolean,
-      required: true,
-      default: false,
-      description: 'GroupConfigGpt resumeDailySigned',
-    },
     messages: {
       type: [messageSchema],
       required: false,
       description: 'Group messages',
       default: [],
     },
-    config: {
-      type: groupConfigSchema,
-      ref: 'GroupConfig',
-      required: true,
-      description: 'GroupConfig',
+    resume: {
+      type: groupResumeSchema,
+      required: false,
+      description: 'GroupResume',
+    },
+    gpt: {
+      type: groupGptSchema,
+      required: false,
+      description: 'GroupConfigGpt',
+    },
+    lng: {
+      type: String,
+      required: false,
+      description: 'GroupConfig lng',
+      default: 'ptbr',
     },
     removedAt: {
       type: Date,

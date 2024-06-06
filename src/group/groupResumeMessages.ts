@@ -43,11 +43,11 @@ const groupResumeMessages = async (args: IGroupResumeMessagesArgs) => {
     },
     {
       $set: {
-        lastResume: new Date(),
+        'resume.lastResume': new Date(),
         messages: [...messagesNotUpdated, ...messagesUpdated],
       },
       $inc: {
-        resumesQty: 1,
+        'resume.qty': 1,
       },
     },
   );
