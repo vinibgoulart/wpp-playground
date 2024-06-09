@@ -5,6 +5,7 @@ import gptMessage from './gpt/gptMessage';
 import resumeMessage from './gpt/resumeMessage';
 import resumeStartMessage from './gpt/resumeStartMessage';
 import resumeStopMessage from './gpt/resumeStopMessage';
+import initMessage from './initMessage';
 import authorMessage from './meme/authorMessage';
 import drakeMessage from './meme/drakeMessage';
 import incrivelMessage from './meme/incrivelMessage';
@@ -36,6 +37,12 @@ export const onMessage = () => {
         return resumeStopMessage(msg);
       case msg.body === '!logs':
         return logsMessage(msg);
+      // trasnlate commands
+      case msg.body.startsWith('!translate-start'):
+        return;
+      // bot commands
+      case msg.body === '!init':
+        return initMessage(msg);
       default:
         return defaultMessage(msg);
     }

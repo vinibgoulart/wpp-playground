@@ -1,6 +1,6 @@
-import { groupCreate } from '../../../group/groupCreate';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
+import GroupModel from 'src/group/groupModel';
 
 const resumeStartMessage = async (msg: Message) => {
   if (!msg.body) {
@@ -9,13 +9,19 @@ const resumeStartMessage = async (msg: Message) => {
 
   const groupId = msg.id.remote;
 
-  const payload = {
-    groupId,
-  };
-
-  await groupCreate({ payload });
+  await GroupModel.findOneAndUpdate(
+    {
+      groupId,
+      removedAt: null,
+    },
+    {
+      $set: {
+        isListening: true,
+      },
+    },
+  );
 
   msg.react('✅');
 };
 
-export default middleware(resumeStartMessage, { onlyOwner: true });
+export default middleware(resumeStartMessage);
