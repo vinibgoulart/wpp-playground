@@ -1,4 +1,4 @@
-import { code } from 'src/utils/textComposer';
+import { code } from 'src/utils/templates';
 import { Message } from 'whatsapp-web.js';
 const getGroupID = async (msg: Message) => {
   try {
