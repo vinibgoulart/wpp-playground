@@ -1,6 +1,6 @@
 import { code } from 'src/utils/templates';
 import { Message } from 'whatsapp-web.js';
-const getGroupID = async (msg: Message) => {
+const groupIdMessage = async (msg: Message) => {
   try {
     return msg.reply(code`${msg.id.remote}`);
   } catch (error) {
@@ -8,4 +8,4 @@ const getGroupID = async (msg: Message) => {
   }
 };
 
-export default getGroupID;
+export default groupIdMessage;
