@@ -1,3 +1,4 @@
+import getGroupIDMessage from './debug/getGroupIDMessage';
 import logsMessage from './debug/logs';
 import gptMessage from './gpt/gptMessage';
 import resumeMessage from './gpt/resumeMessage';
@@ -90,6 +91,12 @@ const COMMANDS = {
   INIT: {
     name: '!init',
     action: initMessage,
+  },
+  GROUP_ID: {
+    name: '!group-id',
+    description: 'Get the group id',
+    example: '!group-id',
+    action: getGroupIDMessage,
   },
   HELP: {
     name: '!help',
