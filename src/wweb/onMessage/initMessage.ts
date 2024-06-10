@@ -16,6 +16,8 @@ const initMessage = async (msg: Message) => {
   await groupCreate({
     payload,
   });
+
+  msg.react('✅');
 };
 
 export default middleware(initMessage);
