@@ -11,6 +11,7 @@ import drakeMessage from './meme/drakeMessage';
 import incrivelMessage from './meme/incrivelMessage';
 import quoteMessage from './meme/quoteMessage';
 import tigerMessage from './meme/tigerMessage';
+import tradeOfferMessage from './meme/tradeOfferMessage';
 export const onMessage = () => {
   client.on('message_create', async (msg) => {
     switch (true) {
@@ -28,6 +29,8 @@ export const onMessage = () => {
         return incrivelMessage(msg);
       case msg.body.startsWith('!tiger'):
         return tigerMessage(msg);
+      case msg.body.startsWith('!trade-offer'):
+        return tradeOfferMessage(msg);
       // resume commands
       case msg.body === '!resume-start':
         return resumeStartMessage(msg);
