@@ -4,6 +4,7 @@ import resumeMessage from './gpt/resumeMessage';
 import resumeStartMessage from './gpt/resumeStartMessage';
 import resumeStopMessage from './gpt/resumeStopMessage';
 import helpMessage from './helpMessage';
+import initMessage from './initMessage';
 import authorMessage from './meme/authorMessage';
 import drakeMessage from './meme/drakeMessage';
 import incrivelMessage from './meme/incrivelMessage';
@@ -86,6 +87,10 @@ const COMMANDS = {
     action: () => {},
   },
   // bot commands
+  INIT: {
+    name: '!init',
+    action: initMessage,
+  },
   HELP: {
     name: '!help',
     description: 'Show all available commands',
