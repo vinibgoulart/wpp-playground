@@ -24,13 +24,13 @@ The main goal of this project is to provide an efficient way to summarize group 
 - Clone the project
 
 ```bash
-  git clone https://github.com/vinibgoulart/wpp-playground-ai
+  git clone https://github.com/vinibgoulart/wpp-playground
 ```
 
 - Go to the project directory
 
 ```bash
-  cd wpp-playground-ai
+  cd wpp-playground
 ```
 
 - Install dependencies
@@ -54,7 +54,7 @@ The main goal of this project is to provide an efficient way to summarize group 
 - Start the server
 
 ```bash
-  yarn start
+  yarn dev
 ```
 
 - Read the QRCode in your whatsapp
