@@ -15,14 +15,11 @@ const getCreditsDiscountPerCommand = (command: string): number => {
   return 2;
 };
 
-export const consumerCredits = async (msg: Message): Promise<void> => {
+export const consumerCredits = async (
+  msg: Message,
+): Promise<{ error: string | null }> => {
   const groupId = msg.id.remote;
   const command = msg.body;
-  const ignoreCommands = [COMMANDS.INIT.name, COMMANDS.HELP.name];
-
-  if (ignoreCommands.includes(msg.body)) {
-    return;
-  }
 
   const group = await GroupModel.findOne({
     groupId,
@@ -31,12 +28,20 @@ export const consumerCredits = async (msg: Message): Promise<void> => {
   });
 
   if (!group) {
-    console.log('Group not found');
-
-    return;
+    return {
+      error: 'Group not found',
+    };
   }
 
-  const creditsUpdated = group.credits - getCreditsDiscountPerCommand(command);
+  const creditsDiscount = getCreditsDiscountPerCommand(command);
+
+  if (group.credits < creditsDiscount) {
+    return {
+      error: 'Insufficient credits',
+    };
+  }
+
+  const creditsUpdated = group.credits - creditsDiscount;
 
   const groupUpdated = await GroupModel.findOneAndUpdate(
     {
@@ -55,12 +60,12 @@ export const consumerCredits = async (msg: Message): Promise<void> => {
   );
 
   if (!groupUpdated) {
-    console.log('Group not found');
-
-    return;
+    return {
+      error: 'Group not found',
+    };
   }
 
-  console.log(
-    `Group ${groupUpdated.groupId} has ${groupUpdated.credits} credits`,
-  );
+  return {
+    error: null,
+  };
 };

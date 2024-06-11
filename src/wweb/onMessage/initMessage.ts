@@ -20,4 +20,4 @@ const initMessage = async (msg: Message) => {
   msg.react('✅');
 };
 
-export default middleware(initMessage);
+export default middleware(initMessage, { consumeCredits: false });
