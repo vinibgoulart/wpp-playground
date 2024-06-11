@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  mongo:
+    container_name: wpp-db
+    networks:
+      - wpp-playground
+    image: mongo:7.0.11
+    restart: always
+    volumes:
+      - .docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: '${MONGO_ROOT_USERNAME}'
+      MONGO_INITDB_ROOT_PASSWORD: '${MONGO_ROOT_USERNAME}'
+      MONGO_INITDB_DATABASE: '${MONGO_DATABASE}'
+      MONGO_USERNAME: '${MONGO_USERNAME}'
+      MONGO_PASSWORD: '${MONGO_PASSWORD}'
+    ports:
+      - '${MONGO_PORT}:27017'
+
+  app:
+    container_name: app
+    depends_on:
+      - mongo
+    networks:
+      - wpp-playground
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+
+networks:
+  wpp-playground:
+    driver: bridge
