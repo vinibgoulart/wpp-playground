@@ -1,18 +1,12 @@
 import { Message } from 'whatsapp-web.js';
 
-import COMMANDS from '../onMessage/commands';
 import GroupModel from '../../group/groupModel';
+import { groupCommandCost } from 'src/group/groupCommandCost';
 
 const getCreditsDiscountPerCommand = (command: string): number => {
-  if (command === COMMANDS.GPT.name) {
-    return 8;
-  }
+  const customCommandCost = groupCommandCost[command];
 
-  if (command === COMMANDS.RESUME.name) {
-    return 10;
-  }
-
-  return 2;
+  return customCommandCost || 2;
 };
 
 export const consumerCredits = async (
@@ -33,15 +27,15 @@ export const consumerCredits = async (
     };
   }
 
-  const creditsDiscount = getCreditsDiscountPerCommand(command);
+  const commandCost = getCreditsDiscountPerCommand(command);
 
-  if (group.credits < creditsDiscount) {
+  if (group.credits < commandCost) {
     return {
       error: 'Insufficient credits',
     };
   }
 
-  const creditsUpdated = group.credits - creditsDiscount;
+  const creditsUpdated = group.credits - commandCost;
 
   const groupUpdated = await GroupModel.findOneAndUpdate(
     {
