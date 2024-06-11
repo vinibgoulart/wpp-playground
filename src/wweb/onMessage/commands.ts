@@ -12,9 +12,16 @@ import incrivelMessage from './meme/incrivelMessage';
 import quoteMessage from './meme/quoteMessage';
 import tigerMessage from './meme/tigerMessage';
 import tradeOfferMessage from './meme/tradeOfferMessage';
+import gptConfigContextMessage from './gpt/gptConfigContextMessage';
 
 const COMMANDS = {
   // gpt commands
+  GPT_CONFIG_CONTEXT: {
+    name: '!gpt-config-context',
+    description: 'Set the context for the GPT',
+    example: '!gpt-config-context You are a bot in a marketing group chat',
+    action: gptConfigContextMessage,
+  },
   GPT: {
     name: '!gpt',
     description: 'Ask to Chat GPT',

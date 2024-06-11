@@ -1,36 +1,20 @@
 import { Message } from 'whatsapp-web.js';
-import { openai } from '../../../openai/openaiApi';
-import { OPENAI_MODEL_ENUM } from '../../../openai/openaiModelEnum';
 import { middleware } from '../../middleware/middleware';
+import { openaiCompletionsCreate } from 'src/openai/openaiCompletionsCreate';
+import GroupModel from 'src/group/groupModel';
 
 const gptMessage = async (msg: Message) => {
-  try {
-    const response = await openai.chat.completions.create({
-      model: OPENAI_MODEL_ENUM.GPT_3_5_TURBO,
-      messages: [
-        {
-          role: 'user',
-          content: [
-            {
-              type: 'text',
-              text: msg.body,
-            },
-          ],
-        },
-      ],
-      temperature: 1,
-      max_tokens: 4096,
-      top_p: 1,
-      frequency_penalty: 0,
-      presence_penalty: 0,
-    });
+  const groupId = msg.id.remote;
+  const group = await GroupModel.findOne({
+    groupId,
+    removedAt: null,
+  });
 
-    msg.reply(response.choices[0].message.content);
-  } catch (error) {
-    console.error(error);
+  const response = await openaiCompletionsCreate({
+    payload: { text: msg.body, context: group?.gpt?.context },
+  });
 
-    msg.reply('Error while trying to resume messages');
-  }
+  msg.reply(response);
 };
 
 export default middleware(gptMessage);
