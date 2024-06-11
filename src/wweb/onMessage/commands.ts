@@ -82,11 +82,6 @@ const COMMANDS = {
     name: '!logs',
     action: logsMessage,
   },
-  // translate commands
-  TRANSLATE_START: {
-    name: '!translate-start',
-    action: () => {},
-  },
   // bot commands
   INIT: {
     name: '!init',
