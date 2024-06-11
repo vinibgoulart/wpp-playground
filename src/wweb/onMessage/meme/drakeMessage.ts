@@ -4,10 +4,6 @@ import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
 
 const drakeMessage = async (msg: Message) => {
-  if (!msg.body) {
-    return;
-  }
-
   const [text0, text1] = msg.body
     .replace('!drake', '')
     .split('-')

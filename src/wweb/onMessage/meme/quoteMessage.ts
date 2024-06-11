@@ -11,10 +11,6 @@ const getRandomTemplate = () =>
   quoteExamples[Math.floor(Math.random() * quoteExamples.length)];
 
 const quoteMessage = async (msg: Message) => {
-  if (!msg.body) {
-    return;
-  }
-
   const quote = await msg.getQuotedMessage();
   if (quote.fromMe) {
     return msg.reply('You cannot quote the bot');

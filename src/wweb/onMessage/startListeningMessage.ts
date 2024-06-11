@@ -3,10 +3,6 @@ import { middleware } from '../middleware/middleware';
 import GroupModel from 'src/group/groupModel';
 
 const startListeningMessage = async (msg: Message) => {
-  if (!msg.body) {
-    return;
-  }
-
   const groupId = msg.id.remote;
 
   await GroupModel.findOneAndUpdate(

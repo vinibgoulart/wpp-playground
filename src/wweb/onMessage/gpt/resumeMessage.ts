@@ -3,10 +3,6 @@ import { groupResumeMessages } from '../../../group/groupResumeMessages';
 import { middleware } from '../../middleware/middleware';
 
 const resumeMessage = async (msg: Message) => {
-  if (!msg.body) {
-    return;
-  }
-
   const groupId = msg.id.remote;
 
   const payload = {

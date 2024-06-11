@@ -4,10 +4,6 @@ import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
 
 const tigerMessage = async (msg: Message) => {
-  if (!msg.body) {
-    return;
-  }
-
   const text1 = msg.body.replace('!tiger', '').trim();
 
   if (!text1) {

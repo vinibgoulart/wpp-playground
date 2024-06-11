@@ -4,6 +4,7 @@ import COMMANDS from './commands';
 
 const helpMessage = async (msg: Message) => {
   let reply = '*Here are all the commands available:* \n\n';
+
   Object.values(COMMANDS).forEach((command) => {
     if (command?.description) {
       reply += `*Command*: ${command.name}\n`;

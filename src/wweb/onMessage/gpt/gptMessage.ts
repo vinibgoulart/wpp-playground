@@ -4,10 +4,6 @@ import { OPENAI_MODEL_ENUM } from '../../../openai/openaiModelEnum';
 import { middleware } from '../../middleware/middleware';
 
 const gptMessage = async (msg: Message) => {
-  if (!msg.body) {
-    return;
-  }
-
   try {
     const response = await openai.chat.completions.create({
       model: OPENAI_MODEL_ENUM.GPT_3_5_TURBO,
