@@ -21,12 +21,6 @@ The main goal of this project is to provide an efficient way to summarize group 
 
 ## Run Locally
 
-- Copy envs
-
-```bash
-  cp .env.local .env
-```
-
 - Clone the project
 
 ```bash
@@ -45,10 +39,10 @@ The main goal of this project is to provide an efficient way to summarize group 
   yarn install
 ```
 
-- Create the envs
+- Copy envs
 
 ```bash
-  yarn env:example
+  cp .env.local .env
 ```
 
 - Start the server
