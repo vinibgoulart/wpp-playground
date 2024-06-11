@@ -53,7 +53,10 @@ const groupResumeMessages = async (args: IGroupResumeMessagesArgs) => {
   );
 
   const text = `${prompts.resume('ptbr')} \n ${messageParseToGpt(
-    messagesNotResumed,
+    messagesNotResumed.map((msg) => ({
+      sender: msg.sender,
+      message: msg.message,
+    })),
   )}`;
 
   const response = await openaiCompletionsCreate({

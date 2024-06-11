@@ -15,13 +15,17 @@ import tradeOfferMessage from './meme/tradeOfferMessage';
 import gptConfigContextMessage from './gpt/gptConfigContextMessage';
 import { Message } from 'whatsapp-web.js';
 import githubMessage from './githubMessage';
+import resumeMessageQty from './gpt/resumeMessageQty';
 
-type Commands = Record<string, {
-  name: string;
-  description?: string;
-  example?: string;
-  action: (msg: Message) => Promise<unknown>;
-}>
+type Commands = Record<
+  string,
+  {
+    name: string;
+    description?: string;
+    example?: string;
+    action: (msg: Message) => Promise<unknown>;
+  }
+>;
 
 const COMMANDS: Commands = {
   // gpt commands
@@ -76,6 +80,12 @@ const COMMANDS: Commands = {
     action: tradeOfferMessage,
   },
   // resume commands
+  RESUME_QTY: {
+    name: '!resume-qty',
+    description: 'Resume the last specified number of messages',
+    example: '!resume-qty <qty>',
+    action: resumeMessageQty,
+  },
   RESUME: {
     name: '!resume',
     description: 'Resume the last group messages',
@@ -119,8 +129,8 @@ const COMMANDS: Commands = {
     name: '!github',
     description: 'Get the github repository link',
     example: '!github',
-    action: githubMessage
-  }
+    action: githubMessage,
+  },
 };
 
 export default COMMANDS;
