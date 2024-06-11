@@ -45,12 +45,6 @@ The main goal of this project is to provide an efficient way to summarize group 
   yarn env:example
 ```
 
-- Build the server
-
-```bash
-  yarn build
-```
-
 - Start the server
 
 ```bash
@@ -59,4 +53,4 @@ The main goal of this project is to provide an efficient way to summarize group 
 
 - Read the QRCode in your whatsapp
 
-- Run `!help-meme` or `!help-gpt` to see the available commands
+- Run `!help` to see the available commands
