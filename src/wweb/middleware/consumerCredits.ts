@@ -1,9 +1,10 @@
 import { Message } from 'whatsapp-web.js';
 
 import GroupModel from '../../group/groupModel';
-import { groupCommandCost } from 'src/group/groupCommandCost';
+import { groupCommandCost } from '../../group/groupCommandCost';
 
 const getCreditsDiscountPerCommand = (command: string): number => {
+  // @ts-ignore
   const customCommandCost = groupCommandCost[command];
 
   return customCommandCost || 2;
@@ -39,9 +40,7 @@ export const consumerCredits = async (
 
   const groupUpdated = await GroupModel.findOneAndUpdate(
     {
-      groupId,
-      removedAt: null,
-      isListening: true,
+      _id: group._id,
     },
     {
       $set: {
