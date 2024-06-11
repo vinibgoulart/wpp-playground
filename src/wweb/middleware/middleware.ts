@@ -33,12 +33,12 @@ export const middleware = (
     if (consumeCredits) {
       const { error } = await consumerCredits(msg);
 
-      if (error) {
-        // Reply with the error message
-        msg.reply(error);
+      // if (error) {
+      //   // Reply with the error message
+      //   msg.reply(error);
 
-        return;
-      }
+      //   return;
+      // }
     }
 
     if (isListening) {
