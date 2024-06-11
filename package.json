@@ -13,7 +13,17 @@
     "env:docker": "cp .env.docker .env",
     "run-db": "docker-compose up -d --build mongo",
     "run-app": "docker-compose up -d --build app",
-    "run-docker": "docker-compose up -d --build"
+    "run-docker": "docker-compose up -d --build",
+    "lint:staged": "lint-staged --no-stash",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx}": [
+      "yarn prettier"
+    ],
+    "*.yml": [
+      "prettier --write"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -34,7 +44,9 @@
     "typescript": "^5.1.6",
     "whatsapp-web.js": "^1.23.0",
     "wwebjs-mongo": "^1.1.0",
-    "yt-get": "^1.1.2"
+    "yt-get": "^1.1.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.5"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.62",
