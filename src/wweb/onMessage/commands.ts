@@ -1,5 +1,5 @@
-import getGroupIDMessage from './debug/getGroupIDMessage';
-import logsMessage from './debug/logs';
+import groupIdMessage from './debug/groupIdMessage';
+import logsMessage from './debug/logsMessage';
 import gptMessage from './gpt/gptMessage';
 import resumeMessage from './gpt/resumeMessage';
 import resumeStartMessage from './gpt/resumeStartMessage';
@@ -91,7 +91,7 @@ const COMMANDS = {
     name: '!group-id',
     description: 'Get the group id',
     example: '!group-id',
-    action: getGroupIDMessage,
+    action: groupIdMessage,
   },
   HELP: {
     name: '!help',
