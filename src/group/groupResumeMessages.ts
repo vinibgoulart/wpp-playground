@@ -1,6 +1,7 @@
 import GroupModel from './groupModel';
 import { prompts } from '../openai/prompts';
 import { openaiCompletionsCreate } from 'src/openai/openaiCompletionsCreate';
+import { messageParseToGpt } from './message/messageParseToGpt';
 
 type IGroupResumeMessagesArgs = {
   payload: {
@@ -21,13 +22,13 @@ const groupResumeMessages = async (args: IGroupResumeMessagesArgs) => {
     return null;
   }
 
-  const notResumedMessages = group.messages.filter((msg) => !msg.resumedAt);
+  const messagesNotResumed = group.messages.filter((msg) => !msg.resumedAt);
 
-  if (!notResumedMessages.length) {
+  if (!messagesNotResumed.length) {
     return 'No messages to resume';
   }
 
-  const messagesUpdated = notResumedMessages.map((msg) => ({
+  const messagesUpdated = messagesNotResumed.map((msg) => ({
     ...msg,
     resumedAt: new Date(),
   }));
@@ -51,13 +52,9 @@ const groupResumeMessages = async (args: IGroupResumeMessagesArgs) => {
     },
   );
 
-  const parseMessages = () => {
-    return notResumedMessages
-      .map((msg) => msg.sender && `${msg.sender.split(' ')[0]}: ${msg.message}`)
-      .join('\n');
-  };
-
-  const text = `${prompts.resume('ptbr')} \n ${parseMessages()}`;
+  const text = `${prompts.resume('ptbr')} \n ${messageParseToGpt(
+    messagesNotResumed,
+  )}`;
 
   const response = await openaiCompletionsCreate({
     payload: {
