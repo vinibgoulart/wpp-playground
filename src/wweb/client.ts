@@ -1,6 +1,6 @@
 import { Client, LocalAuth } from 'whatsapp-web.js';
 import { onAuthFailure } from './onAuthFailure';
-import { onMessage } from './onMessage';
+import { onMessage } from './onMessage/onMessage';
 import { onQrCode } from './onQrCode';
 import { onReady } from './onReady';
 
