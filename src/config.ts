@@ -23,11 +23,19 @@ const {
 } = process.env;
 
 const getMongoUri = () => {
-  if (MONGO_USERNAME && MONGO_PASSWORD) {
-    return `${MONGO_PROTOCOL}://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`;
+  const getPort = () => {
+    if (MONGO_PORT) {
+      return `:${MONGO_PORT}`;
+    }
+
+    return '';
   }
 
-  return `${MONGO_PROTOCOL}://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`;
+  if (MONGO_USERNAME && MONGO_PASSWORD) {
+    return `${MONGO_PROTOCOL}://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}${getPort()}/${MONGO_DATABASE}`;
+  }
+
+  return `${MONGO_PROTOCOL}://${MONGO_HOST}${getPort()}/${MONGO_DATABASE}`;
 };
 
 const MONGO_URI = getMongoUri();
