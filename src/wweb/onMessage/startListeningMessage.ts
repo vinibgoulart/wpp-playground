@@ -1,8 +1,8 @@
 import { Message } from 'whatsapp-web.js';
-import { middleware } from '../../middleware/middleware';
+import { middleware } from '../middleware/middleware';
 import GroupModel from 'src/group/groupModel';
 
-const resumeStartMessage = async (msg: Message) => {
+const startListeningMessage = async (msg: Message) => {
   if (!msg.body) {
     return;
   }
@@ -24,4 +24,4 @@ const resumeStartMessage = async (msg: Message) => {
   msg.react('✅');
 };
 
-export default middleware(resumeStartMessage);
+export default middleware(startListeningMessage);

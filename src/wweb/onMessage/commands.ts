@@ -2,8 +2,8 @@ import groupIdMessage from './debug/groupIdMessage';
 import logsMessage from './debug/logsMessage';
 import gptMessage from './gpt/gptMessage';
 import resumeMessage from './gpt/resumeMessage';
-import resumeStartMessage from './gpt/resumeStartMessage';
-import resumeStopMessage from './gpt/resumeStopMessage';
+import startListeningMessage from './startListeningMessage';
+import stopListeningMessage from './stopListeningMessage';
 import helpMessage from './helpMessage';
 import initMessage from './initMessage';
 import authorMessage from './meme/authorMessage';
@@ -60,32 +60,28 @@ const COMMANDS = {
     action: tradeOfferMessage,
   },
   // resume commands
-  RESUME_START: {
-    name: '!resume-start',
-    description: 'Start to listening messages to resume them later',
-    example: '!resume-start',
-    action: resumeStartMessage,
-  },
   RESUME: {
     name: '!resume',
     description: 'Resume the last group messages',
     example: '!resume',
     action: resumeMessage,
   },
-  RESUME_STOP: {
-    name: '!resume-stop',
-    description: 'Stop to listening messages',
-    example: '!resume-stop',
-    action: resumeStopMessage,
-  },
-  LOGS: {
-    name: '!logs',
-    action: logsMessage,
-  },
   // bot commands
   INIT: {
     name: '!init',
     action: initMessage,
+  },
+  START_LISTENING: {
+    name: '!start-listening',
+    description: 'Start to listening messages',
+    example: '!start-listening',
+    action: startListeningMessage,
+  },
+  STOP_LISTENING: {
+    name: '!stop-listening',
+    description: 'Stop to listening messages',
+    example: '!stop-listening',
+    action: stopListeningMessage,
   },
   GROUP_ID: {
     name: '!group-id',
@@ -98,6 +94,10 @@ const COMMANDS = {
     description: 'Show all available commands',
     example: '!help',
     action: helpMessage,
+  },
+  LOGS: {
+    name: '!logs',
+    action: logsMessage,
   },
 };
 

@@ -1,8 +1,9 @@
-import GroupModel from '../../../group/groupModel';
+import GroupModel from '../../group/groupModel';
 import { Message } from 'whatsapp-web.js';
-import { middleware } from '../../middleware/middleware';
+import { middleware } from '../middleware/middleware';
 
-const resumeStopMessage = async (msg: Message) => {
+const stopListeningMessage = async (msg: Message) => {
+  console.log({ msg });
   if (!msg.body) {
     return;
   }
@@ -24,6 +25,6 @@ const resumeStopMessage = async (msg: Message) => {
   msg.react('✅');
 };
 
-export default middleware(resumeStopMessage, {
+export default middleware(stopListeningMessage, {
   isListening: true,
 });
