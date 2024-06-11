@@ -9,6 +9,10 @@ const logsMessage = async (msg: Message) => {
     }
     message += '```';
 
+    if (!lines.length) {
+      return msg.reply('No logs available');
+    }
+
     return msg.reply(message);
   } catch (error) {
     return msg.reply((error as Error).message);
