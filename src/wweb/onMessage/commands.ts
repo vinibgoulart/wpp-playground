@@ -27,8 +27,6 @@ type Commands = Record<
   }
 >;
 
-// const COMMANDS_ENUM = ;
-
 const COMMANDS: Commands = {
   // gpt commands
   GPT_CONFIG_CONTEXT: {
