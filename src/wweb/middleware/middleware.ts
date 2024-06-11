@@ -1,5 +1,7 @@
 import { Message } from 'whatsapp-web.js';
+
 import { isListening as _isListening } from './isListening';
+import { consumerCredits } from './consumerCredits';
 
 type MiddlewareOptions = {
   isListening?: boolean;
@@ -22,6 +24,8 @@ export const middleware = (
         return;
       }
     }
+
+    await consumerCredits(msg);
 
     if (isListening) {
       const listening = await _isListening(msg);

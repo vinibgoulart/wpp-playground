@@ -11,6 +11,7 @@ type IGroup = {
   resume: IGroupResume;
   gpt: IGroupGpt;
   lng: string;
+  credits: number;
 };
 
 export type GroupDocument = Document & IGroup;
@@ -51,6 +52,10 @@ const GroupSchema = new Schema<GroupDocument>(
       required: false,
       description: 'GroupConfig lng',
       default: 'ptbr',
+    },
+    credits: {
+      type: Number,
+      default: 200,
     },
     removedAt: {
       type: Date,
