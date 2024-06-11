@@ -25,4 +25,7 @@ const defaultMessage = async (msg: Message) => {
   });
 };
 
-export default middleware(defaultMessage, { isListening: true });
+export default middleware(defaultMessage, {
+  isListening: true,
+  consumeCredits: false,
+});
