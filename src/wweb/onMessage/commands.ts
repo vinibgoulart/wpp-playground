@@ -13,8 +13,17 @@ import quoteMessage from './meme/quoteMessage';
 import tigerMessage from './meme/tigerMessage';
 import tradeOfferMessage from './meme/tradeOfferMessage';
 import gptConfigContextMessage from './gpt/gptConfigContextMessage';
+import { Message } from 'whatsapp-web.js';
+import githubMessage from './githubMessage';
 
-const COMMANDS = {
+type Commands = Record<string, {
+  name: string;
+  description?: string;
+  example?: string;
+  action: (msg: Message) => Promise<unknown>;
+}>
+
+const COMMANDS: Commands = {
   // gpt commands
   GPT_CONFIG_CONTEXT: {
     name: '!gpt-config-context',
@@ -106,6 +115,12 @@ const COMMANDS = {
     name: '!logs',
     action: logsMessage,
   },
+  GITHUB: {
+    name: '!github',
+    description: 'Get the github repository link',
+    example: '!github',
+    action: githubMessage
+  }
 };
 
 export default COMMANDS;
