@@ -54,3 +54,23 @@ The main goal of this project is to provide an efficient way to summarize group 
 - Read the QRCode in your whatsapp
 
 - Run `!help` to see the available commands
+
+## Run with Docker
+
+- Run only the database
+
+```bash
+  yarn run-db
+```
+
+- Run only the app
+
+```bash
+  yarn run-app
+```
+
+- Run everything with docker
+
+```bash
+  yarn run-docker
+```

@@ -18,7 +18,7 @@ RUN apt-get update -qq && \
     apt-get install -y build-essential pkg-config python-is-python3 chromium chromium-sandbox
 
 # Copy application code
-COPY --link . .
+COPY . .
 
 # Install dependencies including dev dependencies
 RUN yarn install --frozen-lockfile
