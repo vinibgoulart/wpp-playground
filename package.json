@@ -9,7 +9,8 @@
     "watch-dev": "nodemon --watch \"dist/**/*\" -e js ./dist/index.js",
     "build": "swc src -d dist --copy-files",
     "start": "NODE_ENV=production node dist/index.js",
-    "env:example": "cp .env.local .env",
+    "env:local": "cp .env.local .env",
+    "env:docker": "cp .env.docker .env",
     "run-db": "docker-compose up -d --build mongo",
     "run-app": "docker-compose up -d --build app",
     "run-docker": "docker-compose up -d --build"

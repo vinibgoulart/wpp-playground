@@ -22,7 +22,15 @@ const {
   IMGFLIP_PASSWORD,
 } = process.env;
 
-const MONGO_URI = `${MONGO_PROTOCOL}://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`;
+const getMongoUri = () => {
+  if (MONGO_USERNAME && MONGO_PASSWORD) {
+    return `${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`;
+  }
+
+  return `${MONGO_PROTOCOL}://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`;
+};
+
+const MONGO_URI = getMongoUri();
 
 export const config = {
   MONGO_URI,

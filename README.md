@@ -21,6 +21,12 @@ The main goal of this project is to provide an efficient way to summarize group 
 
 ## Run Locally
 
+- Copy envs
+
+```bash
+  cp .env.local .env
+```
+
 - Clone the project
 
 ```bash
@@ -56,6 +62,12 @@ The main goal of this project is to provide an efficient way to summarize group 
 - Run `!help` to see the available commands
 
 ## Run with Docker
+
+- Copy envs
+
+```bash
+  cp .env.docker .env
+```
 
 - Run only the database
 
