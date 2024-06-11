@@ -37,6 +37,9 @@ const quoteMessage = async (msg: Message) => {
   }
 
   const media = await quote.downloadMedia();
+  if (!media) {
+    return msg.reply('Could not download media');
+  }
   if (!media.mimetype.startsWith('image') || media.mimetype.includes('webp')) {
     return msg.reply('Only images are supported for this command.');
   }
