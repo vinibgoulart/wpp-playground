@@ -16,14 +16,12 @@ import gptConfigContextMessage from './gpt/gptConfigContextMessage';
 import { Message } from 'whatsapp-web.js';
 import githubMessage from './githubMessage';
 
-type Commands = {
-  [key: string]: {
-    name: string;
-    description?: string;
-    example?: string;
-    action: (msg: Message) => Promise<unknown>;
-  };
-}
+type Commands = Record<string, {
+  name: string;
+  description?: string;
+  example?: string;
+  action: (msg: Message) => Promise<unknown>;
+}>
 
 const COMMANDS: Commands = {
   // gpt commands

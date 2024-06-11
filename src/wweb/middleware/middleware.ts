@@ -20,16 +20,13 @@ export const middleware = (
   return async (msg: Message) => {
     // if onlyOwner is true, the message will only be processed if it is sent by the owner,
     // otherwise it will only be processed if it is not sent by the owner
-    if (process.env.NODE_ENV === 'development') return next(msg);
 
     if (onlyOwner) {
-      if (!msg.fromMe) {
-        return;
-      }
+      if (!msg.fromMe) return;
     } else {
-      if (msg.fromMe) {
-        return;
-      }
+      const isDevelopment = process.env.NODE_ENV === 'development';
+      
+      if (msg.fromMe && !isDevelopment) return;
     }
 
     if (consumeCredits) {
