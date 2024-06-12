@@ -83,9 +83,11 @@ const COMMANDS: Commands = {
   },
   INTERESTELAR: {
     name: '!interestelar',
-    description: 'Create a sticker with interestelar this little maneuver is gonna cost us 51 years meme',
+    description:
+      'Create a sticker with interestelar this little maneuver is gonna cost us 51 years meme',
     example: '!interestelar finish this issue',
     action: interestelarMessage,
+  },
   SENHORES: {
     name: '!senhores',
     description:
