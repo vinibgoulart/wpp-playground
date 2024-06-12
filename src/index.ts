@@ -1,10 +1,14 @@
 import { server } from './server';
 import subscribeToLogs from './utils/logs';
 
-if (process.env.NODE_ENV === 'production') {
-  subscribeToLogs();
-}
-server();
-process.on('uncaughtException', (err) => {
-  console.error(err);
-});
+(async (): Promise<void> => {
+  if (process.env.NODE_ENV === 'production') {
+    subscribeToLogs();
+  }
+
+  await server();
+
+  process.on('uncaughtException', (err) => {
+    console.error(err);
+  });
+})()

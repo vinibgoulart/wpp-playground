@@ -16,6 +16,7 @@ import gptConfigContextMessage from './gpt/gptConfigContextMessage';
 import { Message } from 'whatsapp-web.js';
 import githubMessage from './githubMessage';
 import resumeMessageQty from './gpt/resumeMessageQty';
+import interestelarMessage from './meme/interestelarMessage';
 import senhoresMessage from './meme/senhoresMessage';
 
 type Commands = Record<
@@ -80,6 +81,11 @@ const COMMANDS: Commands = {
     example: '!trade-offer bean - delicious coffe',
     action: tradeOfferMessage,
   },
+  INTERESTELAR: {
+    name: '!interestelar',
+    description: 'Create a sticker with interestelar this little maneuver is gonna cost us 51 years meme',
+    example: '!interestelar finish this issue',
+    action: interestelarMessage,
   SENHORES: {
     name: '!senhores',
     description:
