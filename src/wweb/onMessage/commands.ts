@@ -17,6 +17,7 @@ import { Message } from 'whatsapp-web.js';
 import githubMessage from './githubMessage';
 import resumeMessageQty from './gpt/resumeMessageQty';
 import interestelarMessage from './meme/interestelarMessage';
+import senhoresMessage from './meme/senhoresMessage';
 
 type Commands = Record<
   string,
@@ -85,6 +86,12 @@ const COMMANDS: Commands = {
     description: 'Create a sticker with interestelar this little maneuver is gonna cost us 51 years meme',
     example: '!interestelar finish this issue',
     action: interestelarMessage,
+  SENHORES: {
+    name: '!senhores',
+    description:
+      'Create a sticker with Gus Fring meme using the message "Senhores" and the message',
+    example: '!senhores good morning',
+    action: senhoresMessage,
   },
   // resume commands
   RESUME_QTY: {
