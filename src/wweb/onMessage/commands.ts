@@ -16,6 +16,7 @@ import gptConfigContextMessage from './gpt/gptConfigContextMessage';
 import { Message } from 'whatsapp-web.js';
 import githubMessage from './githubMessage';
 import resumeMessageQty from './gpt/resumeMessageQty';
+import senhoresMessage from './meme/senhoresMessage';
 
 type Commands = Record<
   string,
@@ -78,6 +79,13 @@ const COMMANDS: Commands = {
     description: 'Create a sticker with trade offer meme using the message',
     example: '!trade-offer bean - delicious coffe',
     action: tradeOfferMessage,
+  },
+  SENHORES: {
+    name: '!senhores',
+    description:
+      'Create a sticker with Gus Fring meme using the message "Senhores" and the message',
+    example: '!senhores good morning',
+    action: senhoresMessage,
   },
   // resume commands
   RESUME_QTY: {
