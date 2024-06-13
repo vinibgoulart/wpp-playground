@@ -18,6 +18,7 @@ import githubMessage from './githubMessage';
 import resumeMessageQty from './gpt/resumeMessageQty';
 import interestelarMessage from './meme/interestelarMessage';
 import senhoresMessage from './meme/senhoresMessage';
+import textToSpeechMessage from './audio/textToSpeechMessage';
 
 type Commands = Record<
   string,
@@ -42,6 +43,13 @@ const COMMANDS: Commands = {
     description: 'Ask to Chat GPT',
     example: '!gpt Hi, how are you?',
     action: gptMessage,
+  },
+  // text to speech commands
+  AUDIO: {
+    name: '!audio',
+    description: 'Convert text to speech',
+    example: '!audio good morning group!',
+    action: textToSpeechMessage,
   },
   // memes commands
   AUTHOR: {
