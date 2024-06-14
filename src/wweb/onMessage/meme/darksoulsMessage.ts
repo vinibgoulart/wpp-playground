@@ -3,9 +3,9 @@ import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
 
-const tradeOfferMessage = async (msg: Message) => {
+const darksoulsMessage = async (msg: Message) => {
   const [text0, text1] = msg.body
-    .replace('!trade-offer', '')
+    .replace('!darksouls', '')
     .split('-')
     .map((text) => text.trim());
 
@@ -14,7 +14,7 @@ const tradeOfferMessage = async (msg: Message) => {
   }
 
   const imgFlipCaptionResult = await imgflipCaption({
-    templateId: '309868304',
+    templateId: '171457391',
     text0,
     text1,
   });
@@ -32,4 +32,4 @@ const tradeOfferMessage = async (msg: Message) => {
   });
 };
 
-export default middleware(tradeOfferMessage);
+export default middleware(darksoulsMessage);

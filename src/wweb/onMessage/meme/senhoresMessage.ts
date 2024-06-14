@@ -11,7 +11,7 @@ const senhoresMessage = async (msg: Message) => {
   }
 
   const imgFlipCaptionResult = await imgflipCaption({
-    randomTemplatedId: '342785297',
+    templateId: '342785297',
     text0: 'senhores',
     text1,
   });

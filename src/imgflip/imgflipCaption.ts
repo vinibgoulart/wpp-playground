@@ -3,7 +3,7 @@ import { imgflipApi } from './imgflipApi';
 import { objToUrlEncoded } from '../utils/objToUrlEncoded';
 
 type IImgflipCaptionArgs = {
-  randomTemplatedId: string;
+  templateId: string;
   text0?: string;
   text1?: string;
 };
@@ -52,7 +52,7 @@ const imgflipCaption = async (
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: objToUrlEncoded({
-        template_id: args.randomTemplatedId,
+        template_id: args.templateId,
         username: config.IMGFLIP_USERNAME,
         password: config.IMGFLIP_PASSWORD,
         ...getText0(),

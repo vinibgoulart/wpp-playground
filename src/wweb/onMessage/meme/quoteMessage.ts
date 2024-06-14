@@ -19,9 +19,9 @@ const quoteMessage = async (msg: Message) => {
   const text1 = msg.body.replace('!quote', '').trim();
 
   if (!quote.hasMedia) {
-    const randomTemplatedId = getRandomTemplate();
+    const templateId = getRandomTemplate();
     const imgFlipCaptionResult = await imgflipCaption({
-      randomTemplatedId,
+      templateId,
       text0,
       text1,
     });

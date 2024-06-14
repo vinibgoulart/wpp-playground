@@ -11,7 +11,7 @@ const tigerMessage = async (msg: Message) => {
   }
 
   const imgFlipCaptionResult = await imgflipCaption({
-    randomTemplatedId: '517345772',
+    templateId: '517345772',
     text1,
   });
 
