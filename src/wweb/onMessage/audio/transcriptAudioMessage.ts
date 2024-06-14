@@ -76,4 +76,4 @@ const transcriptAudioMessage = async (msg: Message): Promise<void> => {
   handleQuotedAudioMessage(quotedMsg, msg);
 };
 
-export default middleware(transcriptAudioMessage, { onlyOwner: true });
+export default middleware(transcriptAudioMessage);
