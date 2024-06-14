@@ -1,4 +1,4 @@
-import { PreparedEvent } from 'src/telemetry/prepared-event';
+import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { client } from '../client';
 import COMMANDS from './commands';
 import defaultMessage from './defaultMessage';
@@ -10,13 +10,12 @@ export const onMessage = () => {
     );
 
     const chat = await msg.getChat();
-
     const preparedEvent = new PreparedEvent({
       kind: 'on_message_command',
       payload: {
         command: command?.name ?? 'default',
       },
-      chatId: chat.id._serialized,
+      chatId: `${chat.name} - ${chat.id._serialized}`,
     });
 
     if (!!command) {
