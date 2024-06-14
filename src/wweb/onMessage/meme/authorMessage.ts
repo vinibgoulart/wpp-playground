@@ -1,11 +1,12 @@
 import Jimp from 'jimp';
-import { logger } from 'src/logger';
+import { logger } from 'src/telemetry/logger';
+import { PreparedEvent } from 'src/telemetry/prepared-event';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { getBase64 } from '../../../jimp/getBase64';
 import { splitTextIntoLines } from '../../../jimp/strings';
 import { middleware } from '../../middleware/middleware';
 
-const authorMessage = async (msg: Message) => {
+const authorMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   try {
     const quote = await msg.getQuotedMessage();
 
@@ -51,6 +52,14 @@ const authorMessage = async (msg: Message) => {
     });
 
     const base64 = await getBase64(Jimp.MIME_JPEG, image);
+
+    preparedEvent.patchMetadata({
+      width: image.bitmap.width,
+      height: image.bitmap.height,
+      textSize: text.length,
+      lines: lines.length,
+    });
+
     msg.reply(new MessageMedia('image/jpeg', base64), undefined, {
       sendMediaAsSticker: true,
     });

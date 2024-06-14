@@ -1,7 +1,7 @@
+import { unlinkSync } from 'fs';
+import { createAudioFileFromText } from 'src/elevenlabs/textToSpeechFile.ts';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
-import { createAudioFileFromText } from 'src/elevenlabs/textToSpeechFile.ts';
-import { unlinkSync } from 'fs';
 
 const textToSpeechMessage = async (msg: Message) => {
   let text;

@@ -1,4 +1,4 @@
-import { logger } from 'src/logger';
+import { logger } from 'src/telemetry/logger';
 import { Client, LocalAuth } from 'whatsapp-web.js';
 import { onAuthFailure } from './onAuthFailure';
 import { onMessage } from './onMessage/onMessage';

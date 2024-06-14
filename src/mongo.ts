@@ -1,7 +1,7 @@
 import type { ConnectOptions } from 'mongoose';
 import mongoose from 'mongoose';
 import { config } from './config';
-import { logger } from './logger';
+import { logger } from './telemetry/logger';
 
 const connectMongo = (options: ConnectOptions) =>
   new Promise<void>((resolve, reject) => {

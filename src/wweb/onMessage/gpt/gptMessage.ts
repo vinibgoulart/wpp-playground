@@ -1,9 +1,10 @@
+import GroupModel from 'src/group/groupModel';
+import { openaiCompletionsCreate } from 'src/openai/openaiCompletionsCreate';
+import { PreparedEvent } from 'src/telemetry/prepared-event';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
-import { openaiCompletionsCreate } from 'src/openai/openaiCompletionsCreate';
-import GroupModel from 'src/group/groupModel';
 
-const gptMessage = async (msg: Message) => {
+const gptMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   const groupId = msg.id.remote;
   const group = await GroupModel.findOne({
     groupId,
@@ -12,6 +13,7 @@ const gptMessage = async (msg: Message) => {
 
   const response = await openaiCompletionsCreate({
     payload: { text: msg.body, context: group?.gpt?.context },
+    preparedEvent,
   });
 
   msg.reply(response);

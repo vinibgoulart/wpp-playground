@@ -1,6 +1,6 @@
 import './config';
-import { logger } from './logger';
 import { server } from './server';
+import { logger } from './telemetry/logger';
 
 (async (): Promise<void> => {
   await server();

@@ -1,3 +1,4 @@
+import { PreparedEvent } from 'src/telemetry/prepared-event';
 import { Message } from 'whatsapp-web.js';
 import textToSpeechMessage from './audio/textToSpeechMessage';
 import transcriptAudioMessage from './audio/transcriptAudioMessage';
@@ -21,14 +22,13 @@ import tigerMessage from './meme/tigerMessage';
 import tradeOfferMessage from './meme/tradeOfferMessage';
 import startListeningMessage from './startListeningMessage';
 import stopListeningMessage from './stopListeningMessage';
-
 type Commands = Record<
   string,
   {
     name: string;
     description?: string;
     example?: string;
-    action: (msg: Message) => Promise<unknown>;
+    action: (msg: Message, preparedEvent: PreparedEvent) => unknown;
   }
 >;
 

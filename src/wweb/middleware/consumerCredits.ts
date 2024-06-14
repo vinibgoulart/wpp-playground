@@ -1,7 +1,8 @@
 import { Message } from 'whatsapp-web.js';
 
-import GroupModel from '../../group/groupModel';
+import { PreparedEvent } from 'src/telemetry/prepared-event';
 import { groupCommandCost } from '../../group/groupCommandCost';
+import GroupModel from '../../group/groupModel';
 
 const getCreditsDiscountPerCommand = (command: string): number => {
   // @ts-ignore
@@ -12,6 +13,7 @@ const getCreditsDiscountPerCommand = (command: string): number => {
 
 export const consumerCredits = async (
   msg: Message,
+  preparedEvent: PreparedEvent,
 ): Promise<{ error: string | null }> => {
   const groupId = msg.id.remote;
   const command = msg.body;
@@ -29,7 +31,8 @@ export const consumerCredits = async (
   }
 
   const commandCost = getCreditsDiscountPerCommand(command);
-
+  preparedEvent.patchMetadata({ commandCost });
+  preparedEvent.patchMetadata({ groupCredits: group.credits });
   if (group.credits < commandCost) {
     return {
       error: 'Insufficient credits',

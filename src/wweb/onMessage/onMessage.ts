@@ -1,3 +1,4 @@
+import { PreparedEvent } from 'src/telemetry/prepared-event';
 import { client } from '../client';
 import COMMANDS from './commands';
 import defaultMessage from './defaultMessage';
@@ -8,10 +9,22 @@ export const onMessage = () => {
       msg.body.split(' ')[0].startsWith(command.name),
     );
 
+    const chat = await msg.getChat();
+
+    const preparedEvent = new PreparedEvent({
+      kind: 'on_message_command',
+      payload: {
+        command: command?.name ?? 'default',
+      },
+      chatId: chat.id._serialized,
+    });
+
     if (!!command) {
-      return command.action(msg);
+      const res = await command.action(msg, preparedEvent);
+      preparedEvent.flush();
+      return res;
     }
 
-    return defaultMessage(msg);
+    return defaultMessage(msg, preparedEvent);
   });
 };

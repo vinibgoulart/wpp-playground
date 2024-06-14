@@ -4,11 +4,10 @@ import { config } from '../config';
 
 import { v4 as uuid } from 'uuid';
 
+const ELEVENLABS_API_KEY = config.ELEVENLABS_API_KEY;
 export const createAudioFileFromText = async (
   text: string,
 ): Promise<string> => {
-  const ELEVENLABS_API_KEY = config.ELEVENLABS_API_KEY;
-
   if (!ELEVENLABS_API_KEY) {
     return Promise.reject('ElevenLabs API key not found.');
   }

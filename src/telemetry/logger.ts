@@ -1,6 +1,6 @@
 import os from 'os';
 import pino from 'pino';
-import { config } from './config';
+import { config } from '../config';
 
 const options: pino.LoggerOptions = {
   base: {

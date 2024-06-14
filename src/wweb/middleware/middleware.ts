@@ -1,7 +1,8 @@
 import { Message } from 'whatsapp-web.js';
 
-import { isListening as _isListening } from './isListening';
+import { PreparedEvent } from 'src/telemetry/prepared-event';
 import { consumerCredits } from './consumerCredits';
+import { isListening as _isListening } from './isListening';
 
 type MiddlewareOptions = {
   isListening?: boolean;
@@ -10,14 +11,14 @@ type MiddlewareOptions = {
 };
 
 export const middleware = (
-  next: (msg: Message) => unknown,
+  next: (msg: Message, preparedEvent: PreparedEvent) => unknown,
   {
     isListening = false,
     consumeCredits = true,
     onlyOwner = false,
   }: MiddlewareOptions = {},
 ) => {
-  return async (msg: Message) => {
+  return async (msg: Message, preparedEvent: PreparedEvent) => {
     // if onlyOwner is true, the message will only be processed if it is sent by the owner,
     // otherwise it will only be processed if it is not sent by the owner
 
@@ -25,12 +26,12 @@ export const middleware = (
       if (!msg.fromMe) return;
     } else {
       const isDevelopment = process.env.NODE_ENV === 'development';
-      
+
       if (msg.fromMe && !isDevelopment) return;
     }
 
     if (consumeCredits) {
-      const { error } = await consumerCredits(msg);
+      const { error } = await consumerCredits(msg, preparedEvent);
 
       // if (error) {
       //   // Reply with the error message
@@ -47,9 +48,9 @@ export const middleware = (
         return;
       }
 
-      return next(msg);
+      return next(msg, preparedEvent);
     }
 
-    return next(msg);
+    return next(msg, preparedEvent);
   };
 };

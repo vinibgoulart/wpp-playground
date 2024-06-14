@@ -1,5 +1,5 @@
 import { createReadStream, unlinkSync } from 'fs';
-import { logger } from 'src/logger';
+import { logger } from 'src/telemetry/logger';
 import { Message } from 'whatsapp-web.js';
 import { openaiTranscribeAudio } from './openaiTranscribeAudio';
 
