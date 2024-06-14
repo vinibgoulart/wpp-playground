@@ -21,6 +21,7 @@ import senhoresMessage from './meme/senhoresMessage';
 import textToSpeechMessage from './audio/textToSpeechMessage';
 import supremacyMessage from './meme/supremacyMessage';
 import darksoulsMessage from './meme/darksoulsMessage';
+import transcriptAudioMessage from './audio/transcriptAudioMessage';
 
 type Commands = Record<
   string,
@@ -52,6 +53,12 @@ const COMMANDS: Commands = {
     description: 'Convert text to speech',
     example: '!audio good morning group!',
     action: textToSpeechMessage,
+  },
+  TRANSCRIPT: {
+    name: '!transcript',
+    description: 'Convert audio from the quoted message to text',
+    example: '!transcript',
+    action: transcriptAudioMessage,
   },
   // memes commands
   AUTHOR: {
