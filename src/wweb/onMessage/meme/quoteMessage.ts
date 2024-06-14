@@ -1,5 +1,6 @@
 import imageToBase64 from 'image-to-base64';
 import Jimp from 'jimp';
+import { PreparedEvent } from 'src/telemetry/prepared-event';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import { quoteExamples } from '../../../imgflip/quote/quoteExamples';
@@ -10,7 +11,7 @@ import { middleware } from '../../middleware/middleware';
 const getRandomTemplate = () =>
   quoteExamples[Math.floor(Math.random() * quoteExamples.length)];
 
-const quoteMessage = async (msg: Message) => {
+const quoteMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   const quote = await msg.getQuotedMessage();
   if (quote.fromMe) {
     return msg.reply('You cannot quote the bot');
@@ -67,6 +68,13 @@ const quoteMessage = async (msg: Message) => {
   });
 
   const base64 = await getBase64(Jimp.MIME_JPEG, image);
+
+  preparedEvent.patchMetadata({
+    width: image.bitmap.width,
+    height: image.bitmap.height,
+    textSize: text0.length + text1.length,
+    lines: text0Lines.length + text1Lines.length,
+  });
   msg.reply(new MessageMedia('image/jpeg', base64), undefined, {
     sendMediaAsSticker: true,
   });

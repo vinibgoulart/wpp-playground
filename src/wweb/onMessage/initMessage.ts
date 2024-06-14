@@ -1,6 +1,6 @@
 import { Message } from 'whatsapp-web.js';
-import { middleware } from '../middleware/middleware';
 import { groupCreate } from '../../group/groupCreate';
+import { middleware } from '../middleware/middleware';
 
 const initMessage = async (msg: Message) => {
   const groupId = msg.id.remote;

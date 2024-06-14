@@ -1,9 +1,13 @@
-import { Message } from 'whatsapp-web.js';
-import { handleQuotedAudioMessage } from '../../../utils/handleQuotedAudioMessage';
-import { processAndTranscribeAudio } from '../../../openai/processAndTranscribeAudio';
+import { PreparedEvent } from 'src/telemetry/prepared-event';
 import { middleware } from 'src/wweb/middleware/middleware';
+import { Message } from 'whatsapp-web.js';
+import { processAndTranscribeAudio } from '../../../openai/processAndTranscribeAudio';
+import { handleQuotedAudioMessage } from '../../../utils/handleQuotedAudioMessage';
 
-const transcriptAudioMessage = async (msg: Message) => {
+const transcriptAudioMessage = async (
+  msg: Message,
+  preparedEvent: PreparedEvent,
+) => {
   if (!msg.hasQuotedMsg) {
     msg.reply('No quoted message found.');
     return;
@@ -14,6 +18,7 @@ const transcriptAudioMessage = async (msg: Message) => {
     quotedMsg,
     msg,
     callback: processAndTranscribeAudio,
+    preparedEvent,
   });
   msg.reply(responseMessage);
 };

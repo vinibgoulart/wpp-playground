@@ -1,5 +1,5 @@
 import { ReadStream } from 'fs';
-import { logger } from 'src/logger';
+import { logger } from 'src/telemetry/logger';
 import { openai } from './openaiApi';
 
 const openaiTranscribeAudio = async (file: ReadStream): Promise<string> => {

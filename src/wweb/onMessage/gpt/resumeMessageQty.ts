@@ -1,10 +1,11 @@
+import { messageParseToGpt } from 'src/group/message/messageParseToGpt';
+import { openaiCompletionsCreate } from 'src/openai/openaiCompletionsCreate';
+import { prompts } from 'src/openai/prompts';
+import { PreparedEvent } from 'src/telemetry/prepared-event';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
-import { prompts } from 'src/openai/prompts';
-import { openaiCompletionsCreate } from 'src/openai/openaiCompletionsCreate';
-import { messageParseToGpt } from 'src/group/message/messageParseToGpt';
 
-const resumeMessageQty = async (msg: Message) => {
+const resumeMessageQty = async (msg: Message, preparedEvent: PreparedEvent) => {
   const qty = msg.body.replace('!resume-qty', '').trim();
 
   if (!qty) {
@@ -45,6 +46,7 @@ const resumeMessageQty = async (msg: Message) => {
       text,
       context: '',
     },
+    preparedEvent,
   });
 
   if (!response) {

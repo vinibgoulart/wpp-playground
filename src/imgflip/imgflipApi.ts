@@ -1,4 +1,4 @@
-import { logger } from 'src/logger';
+import { logger } from 'src/telemetry/logger';
 
 const imgflipApi = (uri: string, options: RequestInit) => {
   const url = `https://api.imgflip.com${uri}`;

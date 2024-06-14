@@ -1,4 +1,4 @@
-import { logger } from 'src/logger';
+import { logger } from 'src/telemetry/logger';
 import { config } from '../config';
 import { objToUrlEncoded } from '../utils/objToUrlEncoded';
 import { imgflipApi } from './imgflipApi';

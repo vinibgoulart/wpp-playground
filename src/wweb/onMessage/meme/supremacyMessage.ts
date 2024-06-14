@@ -1,5 +1,5 @@
 import imageToBase64 from 'image-to-base64';
-import { logger } from 'src/logger';
+import { logger } from 'src/telemetry/logger';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import { middleware } from '../../middleware/middleware';

@@ -1,4 +1,4 @@
-import { logger } from 'src/logger';
+import { logger } from 'src/telemetry/logger';
 import { client } from './client';
 
 export const onAuthFailure = () => {

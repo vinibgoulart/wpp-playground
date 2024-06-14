@@ -1,6 +1,6 @@
 import { app } from './app';
-import { logger } from './logger';
 import { connectDatabase } from './mongo';
+import { logger } from './telemetry/logger';
 
 export const server = async () => {
   try {

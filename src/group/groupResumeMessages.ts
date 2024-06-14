@@ -1,12 +1,14 @@
-import GroupModel from './groupModel';
-import { prompts } from '../openai/prompts';
 import { openaiCompletionsCreate } from 'src/openai/openaiCompletionsCreate';
+import { PreparedEvent } from 'src/telemetry/prepared-event';
+import { prompts } from '../openai/prompts';
+import GroupModel from './groupModel';
 import { messageParseToGpt } from './message/messageParseToGpt';
 
 type IGroupResumeMessagesArgs = {
   payload: {
     groupId: string;
   };
+  preparedEvent: PreparedEvent;
 };
 
 const groupResumeMessages = async (args: IGroupResumeMessagesArgs) => {
@@ -64,6 +66,7 @@ const groupResumeMessages = async (args: IGroupResumeMessagesArgs) => {
       text,
       context: group.gpt?.context,
     },
+    preparedEvent: args.preparedEvent,
   });
 
   return response;

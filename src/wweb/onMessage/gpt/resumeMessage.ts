@@ -1,15 +1,16 @@
+import { PreparedEvent } from 'src/telemetry/prepared-event';
 import { Message } from 'whatsapp-web.js';
 import { groupResumeMessages } from '../../../group/groupResumeMessages';
 import { middleware } from '../../middleware/middleware';
 
-const resumeMessage = async (msg: Message) => {
+const resumeMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   const groupId = msg.id.remote;
 
   const payload = {
     groupId,
   };
 
-  const resume = await groupResumeMessages({ payload });
+  const resume = await groupResumeMessages({ payload, preparedEvent });
 
   if (!resume) {
     return msg.reply('No messages to resume');
