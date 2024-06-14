@@ -45,7 +45,8 @@ const transcribeAudio = async (filePath: string, retries: number = 0, msg: Messa
 };
 
 const handleQuotedAudioMessage = async (quotedMsg: Message, msg: Message): Promise<void> => {
-  if (quotedMsg.type !== 'ptt') {
+  if (quotedMsg.type !== 'ptt' && quotedMsg.type !== 'audio') {
+    console.log(`Unsupported quoted message type: ${quotedMsg.type}`);
     return;
   }
 
@@ -69,6 +70,7 @@ const handleQuotedAudioMessage = async (quotedMsg: Message, msg: Message): Promi
 
 const transcriptAudioMessage = async (msg: Message): Promise<void> => {
   if (!msg.hasQuotedMsg) {
+    console.log('!msg.hasQuotedMsg')
     return;
   }
 
@@ -76,4 +78,4 @@ const transcriptAudioMessage = async (msg: Message): Promise<void> => {
   handleQuotedAudioMessage(quotedMsg, msg);
 };
 
-export default middleware(transcriptAudioMessage);
+export default middleware(transcriptAudioMessage, { onlyOwner: true });
