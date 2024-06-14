@@ -25,6 +25,7 @@ import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import languageMessage from './languageMessage';
 import { COMMANDS_TYPES_ENUM } from './commandsTypeEnum';
 import { COMMANDS_COST } from './commandsCost';
+import configMessage from './configMessage';
 
 type ICommands = {
   [key in COMMANDS_TYPES_ENUM]: {
@@ -204,6 +205,13 @@ const COMMANDS: ICommands = {
     example: '!language <ptbr | en>',
     action: languageMessage,
     cost: COMMANDS_COST.LANGUAGE,
+  },
+  [COMMANDS_TYPES_ENUM.CONFIG]: {
+    name: '!config',
+    description: 'See the bot configuration',
+    example: '!config',
+    action: configMessage,
+    cost: COMMANDS_COST.CONFIG,
   },
 };
 

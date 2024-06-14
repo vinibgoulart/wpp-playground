@@ -22,4 +22,5 @@ export enum COMMANDS_TYPES_ENUM {
   HELP = 'HELP',
   GITHUB = 'GITHUB',
   LANGUAGE = 'LANGUAGE',
+  CONFIG = 'CONFIG',
 }
