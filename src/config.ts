@@ -23,6 +23,7 @@ const {
   AXIOM_TOKEN,
   ELEVENLABS_API_KEY,
   NODE_ENV,
+  PORT,
 } = process.env;
 
 const getMongoUri = () => {
@@ -51,4 +52,5 @@ export const config = {
   AXIOM_TOKEN,
   ELEVENLABS_API_KEY,
   NODE_ENV,
+  PORT,
 };
