@@ -1,3 +1,4 @@
+import { logger } from 'src/logger';
 import { createDownloadDir } from 'src/utils/createDownloadDir';
 import { saveMediaToFile } from 'src/utils/saveMediaToFile';
 import { Message } from 'whatsapp-web.js';
@@ -13,7 +14,18 @@ type HandleQuotedAudioMessageOptions = {
   retries?: number;
 };
 
-const SUPPORTED_FORMATS = ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm'];
+const SUPPORTED_FORMATS = [
+  'flac',
+  'm4a',
+  'mp3',
+  'mp4',
+  'mpeg',
+  'mpga',
+  'oga',
+  'ogg',
+  'wav',
+  'webm',
+];
 
 const handleQuotedAudioMessage = async ({
   quotedMsg,
@@ -22,25 +34,25 @@ const handleQuotedAudioMessage = async ({
   retries = 0,
 }: HandleQuotedAudioMessageOptions): Promise<string> => {
   if (quotedMsg.type !== 'ptt' && quotedMsg.type !== 'audio') {
-    console.log(`Unsupported quoted message type: ${quotedMsg.type}`);
+    logger.info(`Unsupported quoted message type: ${quotedMsg.type}`);
     return 'Unsupported quoted message type.';
   }
 
   const media = await quotedMsg.downloadMedia();
   if (!media) {
-    console.log('Failed to download media.');
+    logger.error('Failed to download media.');
     return 'Failed to download media.';
   }
 
   const extension = media.mimetype.split('/')[1].split(';')[0];
   if (!SUPPORTED_FORMATS.includes(extension)) {
-    console.error(`Unsupported file format: ${extension}`);
+    logger.error(`Unsupported file format: ${extension}`);
     return 'Unsupported file format.';
   }
 
   const downloadDir = createDownloadDir();
   const mediaPath = saveMediaToFile(media, downloadDir, extension);
-  console.log('Media downloaded and saved at:', mediaPath);
+  logger.info('Media downloaded and saved at:', mediaPath);
 
   return await callback({ filePath: mediaPath, retries, msg });
 };

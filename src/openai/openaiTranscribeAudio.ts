@@ -1,5 +1,6 @@
-import { openai } from './openaiApi';
 import { ReadStream } from 'fs';
+import { logger } from 'src/logger';
+import { openai } from './openaiApi';
 
 const openaiTranscribeAudio = async (file: ReadStream): Promise<string> => {
   try {
@@ -12,13 +13,12 @@ const openaiTranscribeAudio = async (file: ReadStream): Promise<string> => {
     if (response.text) {
       return response.text;
     }
-    console.error('No transcription text returned by OpenAI.');
+    logger.error('No transcription text returned by OpenAI.');
     return 'Failed to transcribe audio: no text returned.';
-
   } catch (error) {
-    console.error(`Error during transcription: ${error}`);
+    logger.error(`Error during transcription: ${error}`);
     return 'Failed to transcribe audio due to an error.';
   }
 };
 
-export { openaiTranscribeAudio }
+export { openaiTranscribeAudio };

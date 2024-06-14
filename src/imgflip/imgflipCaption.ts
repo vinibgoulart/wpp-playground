@@ -1,6 +1,7 @@
+import { logger } from 'src/logger';
 import { config } from '../config';
-import { imgflipApi } from './imgflipApi';
 import { objToUrlEncoded } from '../utils/objToUrlEncoded';
+import { imgflipApi } from './imgflipApi';
 
 type IImgflipCaptionArgs = {
   templateId: string;
@@ -81,7 +82,7 @@ const imgflipCaption = async (
       url: json.data.url,
     };
   } catch (error) {
-    console.log({ error });
+    logger.error({ error });
     return {
       success: false,
       error: 'Failed to generate quote',

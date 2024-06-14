@@ -1,13 +1,14 @@
+import imageToBase64 from 'image-to-base64';
+import { logger } from 'src/logger';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { imgflipCaption } from '../../../imgflip/imgflipCaption';
-import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
 
 const supremacyMessage = async (msg: Message) => {
   const text1 = msg.body.replace('!supremacy', '').trim();
 
   if (!text1) {
-    console.log('No text1');
+    logger.info('No text1');
     return;
   }
 
@@ -17,7 +18,7 @@ const supremacyMessage = async (msg: Message) => {
   });
 
   if (!imgFlipCaptionResult.success) {
-    console.log('No success', imgFlipCaptionResult.error);
+    logger.info('No success', imgFlipCaptionResult.error);
 
     return msg.reply(imgFlipCaptionResult.error);
   }
@@ -30,7 +31,7 @@ const supremacyMessage = async (msg: Message) => {
     sendMediaAsSticker: true,
   });
 
-  console.log('Success');
+  logger.info('Success');
 };
 
 export default middleware(supremacyMessage);

@@ -1,12 +1,13 @@
 import { app } from './app';
+import { logger } from './logger';
 import { connectDatabase } from './mongo';
 
 export const server = async () => {
   try {
-    console.log('connecting to database...');
+    logger.info('connecting to database...');
     await connectDatabase();
   } catch (err) {
-    console.log('Could not connect to database', { err });
+    logger.error('Could not connect to database', { err });
     throw err;
   }
 

@@ -1,8 +1,9 @@
-import { client } from "./client";
+import { logger } from 'src/logger';
+import { client } from './client';
 
 export const onAuthFailure = () => {
-  client.on('auth_failure', msg => {
+  client.on('auth_failure', (msg) => {
     // Fired if session restore was unsuccessful
-    console.error('AUTHENTICATION FAILURE', msg);
-});
+    logger.error('AUTHENTICATION FAILURE', msg);
+  });
 };

@@ -1,4 +1,5 @@
 import Jimp from 'jimp';
+import { logger } from 'src/logger';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { getBase64 } from '../../../jimp/getBase64';
 import { splitTextIntoLines } from '../../../jimp/strings';
@@ -54,7 +55,7 @@ const authorMessage = async (msg: Message) => {
       sendMediaAsSticker: true,
     });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     // @ts-expect-error: error is unknown
     msg.reply('An error occured while processing the image. ', error?.message);
   }
