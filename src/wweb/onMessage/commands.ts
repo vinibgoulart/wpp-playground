@@ -19,6 +19,8 @@ import resumeMessageQty from './gpt/resumeMessageQty';
 import interestelarMessage from './meme/interestelarMessage';
 import senhoresMessage from './meme/senhoresMessage';
 import textToSpeechMessage from './audio/textToSpeechMessage';
+import supremacyMessage from './meme/supremacyMessage';
+import darksoulsMessage from './meme/darksoulsMessage';
 
 type Commands = Record<
   string,
@@ -102,6 +104,19 @@ const COMMANDS: Commands = {
       'Create a sticker with Gus Fring meme using the message "Senhores" and the message',
     example: '!senhores good morning',
     action: senhoresMessage,
+  },
+  SUPREMACY: {
+    name: '!supremacy',
+    description:
+      'Create a sticker with i believe in ---- supremacy meme using the message',
+    example: '!supremacy taylor swift',
+    action: supremacyMessage,
+  },
+  DARKSOULS: {
+    name: '!darksouls',
+    description: 'Create a sticker with Dark Souls meme using the message',
+    example: '!darksouls jr startup dev - sr faang dev',
+    action: darksoulsMessage,
   },
   // resume commands
   RESUME_QTY: {
