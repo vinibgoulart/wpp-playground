@@ -1,3 +1,4 @@
+import { logger } from 'src/logger';
 import { Client, LocalAuth } from 'whatsapp-web.js';
 import { onAuthFailure } from './onAuthFailure';
 import { onMessage } from './onMessage/onMessage';
@@ -19,7 +20,7 @@ export const client = new Client({
 });
 
 export const connectClient = () => {
-  console.log('Connecting to WhatsApp Web...');
+  logger.info('Connecting to WhatsApp Web...');
   client.initialize();
 
   onQrCode();
