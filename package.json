@@ -27,6 +27,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@axiomhq/js": "^1.0.0",
     "@axiomhq/pino": "^1.0.0",
     "@google-cloud/local-auth": "2.1.0",
     "@types/qrcode-terminal": "^0.12.0",
