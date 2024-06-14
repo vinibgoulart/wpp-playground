@@ -20,6 +20,9 @@ const {
   OPENAI_API_KEY,
   IMGFLIP_USERNAME,
   IMGFLIP_PASSWORD,
+  AXIOM_TOKEN,
+  ELEVENLABS_API_KEY,
+  NODE_ENV,
 } = process.env;
 
 const getMongoUri = () => {
@@ -29,7 +32,7 @@ const getMongoUri = () => {
     }
 
     return '';
-  }
+  };
 
   if (MONGO_USERNAME && MONGO_PASSWORD) {
     return `${MONGO_PROTOCOL}://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}${getPort()}/${MONGO_DATABASE}`;
@@ -45,4 +48,7 @@ export const config = {
   OPENAI_API_KEY,
   IMGFLIP_USERNAME,
   IMGFLIP_PASSWORD,
+  AXIOM_TOKEN,
+  ELEVENLABS_API_KEY,
+  NODE_ENV,
 };

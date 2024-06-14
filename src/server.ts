@@ -7,8 +7,7 @@ export const server = async () => {
     logger.info('connecting to database...');
     await connectDatabase();
   } catch (err) {
-    logger.error('Could not connect to database', { err });
-    throw err;
+    logger.fatal('Could not connect to database', err);
   }
 
   app();

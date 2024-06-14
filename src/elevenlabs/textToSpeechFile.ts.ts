@@ -1,16 +1,13 @@
 import { ElevenLabsClient } from 'elevenlabs';
 import { createWriteStream } from 'fs';
+import { config } from '../config';
 
 import { v4 as uuid } from 'uuid';
-
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 export const createAudioFileFromText = async (
   text: string,
 ): Promise<string> => {
-  const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
+  const ELEVENLABS_API_KEY = config.ELEVENLABS_API_KEY;
 
   if (!ELEVENLABS_API_KEY) {
     return Promise.reject('ElevenLabs API key not found.');
