@@ -19,4 +19,4 @@ const gptMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   msg.reply(response);
 };
 
-export default middleware(gptMessage);
+export default middleware(gptMessage, { cost: 5 });

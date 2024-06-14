@@ -22,6 +22,7 @@ import tigerMessage from './meme/tigerMessage';
 import tradeOfferMessage from './meme/tradeOfferMessage';
 import startListeningMessage from './startListeningMessage';
 import stopListeningMessage from './stopListeningMessage';
+
 type Commands = Record<
   string,
   {

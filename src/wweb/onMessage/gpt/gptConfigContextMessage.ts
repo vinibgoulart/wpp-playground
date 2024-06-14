@@ -32,4 +32,4 @@ const gptConfigContextMessage = async (
   msg.react('✅');
 };
 
-export default middleware(gptConfigContextMessage);
+export default middleware(gptConfigContextMessage, { cost: 2 });

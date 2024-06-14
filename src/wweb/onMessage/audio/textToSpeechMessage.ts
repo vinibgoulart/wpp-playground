@@ -22,4 +22,7 @@ const textToSpeechMessage = async (msg: Message) => {
   unlinkSync(fileName);
 };
 
-export default middleware(textToSpeechMessage);
+export default middleware(textToSpeechMessage, {
+  // rethink this cost
+  cost: 50,
+});

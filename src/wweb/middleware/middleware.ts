@@ -6,17 +6,13 @@ import { isListening as _isListening } from './isListening';
 
 type MiddlewareOptions = {
   isListening?: boolean;
-  consumeCredits?: boolean;
+  cost?: number;
   onlyOwner?: boolean;
 };
 
 export const middleware = (
   next: (msg: Message, preparedEvent: PreparedEvent) => unknown,
-  {
-    isListening = false,
-    consumeCredits = true,
-    onlyOwner = false,
-  }: MiddlewareOptions = {},
+  { isListening = false, cost = 0, onlyOwner = false }: MiddlewareOptions = {},
 ) => {
   return async (msg: Message, preparedEvent: PreparedEvent) => {
     // if onlyOwner is true, the message will only be processed if it is sent by the owner,
@@ -30,8 +26,8 @@ export const middleware = (
       if (msg.fromMe && !isDevelopment) return;
     }
 
-    if (consumeCredits) {
-      const { error } = await consumerCredits(msg, preparedEvent);
+    if (cost) {
+      const { error } = await consumerCredits({ msg, preparedEvent, cost });
 
       // if (error) {
       //   // Reply with the error message

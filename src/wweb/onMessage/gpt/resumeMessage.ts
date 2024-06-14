@@ -21,4 +21,5 @@ const resumeMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
 
 export default middleware(resumeMessage, {
   isListening: true,
+  cost: 10,
 });

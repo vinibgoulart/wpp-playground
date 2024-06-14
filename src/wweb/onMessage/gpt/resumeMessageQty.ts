@@ -56,4 +56,6 @@ const resumeMessageQty = async (msg: Message, preparedEvent: PreparedEvent) => {
   msg.reply(`Resuming messages:\n\n${response}`);
 };
 
-export default middleware(resumeMessageQty);
+export default middleware(resumeMessageQty, {
+  cost: 10,
+});

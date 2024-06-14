@@ -23,4 +23,6 @@ const transcriptAudioMessage = async (
   msg.reply(responseMessage);
 };
 
-export default middleware(transcriptAudioMessage);
+export default middleware(transcriptAudioMessage, {
+  cost: 10,
+});

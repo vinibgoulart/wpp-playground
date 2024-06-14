@@ -1,22 +1,20 @@
 import { Message } from 'whatsapp-web.js';
 
 import { PreparedEvent } from 'src/telemetry/prepared-event';
-import { groupCommandCost } from '../../group/groupCommandCost';
 import GroupModel from '../../group/groupModel';
 
-const getCreditsDiscountPerCommand = (command: string): number => {
-  // @ts-ignore
-  const customCommandCost = groupCommandCost[command];
-
-  return customCommandCost || 2;
+type IConsumerCreditsArgs = {
+  msg: Message;
+  preparedEvent: PreparedEvent;
+  cost: number;
 };
 
-export const consumerCredits = async (
-  msg: Message,
-  preparedEvent: PreparedEvent,
-): Promise<{ error: string | null }> => {
+export const consumerCredits = async ({
+  msg,
+  preparedEvent,
+  cost,
+}: IConsumerCreditsArgs): Promise<{ error: string | null }> => {
   const groupId = msg.id.remote;
-  const command = msg.body;
 
   const group = await GroupModel.findOne({
     groupId,
@@ -30,16 +28,15 @@ export const consumerCredits = async (
     };
   }
 
-  const commandCost = getCreditsDiscountPerCommand(command);
-  preparedEvent.patchMetadata({ commandCost });
+  preparedEvent.patchMetadata({ cost });
   preparedEvent.patchMetadata({ groupCredits: group.credits });
-  if (group.credits < commandCost) {
+  if (group.credits < cost) {
     return {
       error: 'Insufficient credits',
     };
   }
 
-  const creditsUpdated = group.credits - commandCost;
+  const creditsUpdated = group.credits - cost;
 
   const groupUpdated = await GroupModel.findOneAndUpdate(
     {
