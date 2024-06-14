@@ -1,5 +1,5 @@
 import { openaiCompletionsCreate } from 'src/openai/openaiCompletionsCreate';
-import { PreparedEvent } from 'src/telemetry/prepared-event';
+import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { prompts } from '../openai/prompts';
 import GroupModel from './groupModel';
 import { messageParseToGpt } from './message/messageParseToGpt';

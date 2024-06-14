@@ -1,6 +1,6 @@
 import imageToBase64 from 'image-to-base64';
 import Jimp from 'jimp';
-import { PreparedEvent } from 'src/telemetry/prepared-event';
+import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import { quoteExamples } from '../../../imgflip/quote/quoteExamples';
