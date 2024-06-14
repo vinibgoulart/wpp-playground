@@ -1,4 +1,3 @@
-import './config';
 import { logger } from './logger';
 import { server } from './server';
 
