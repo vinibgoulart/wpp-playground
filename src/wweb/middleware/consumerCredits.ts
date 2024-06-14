@@ -1,7 +1,6 @@
 import { Message } from 'whatsapp-web.js';
 
 import { PreparedEvent } from 'src/telemetry/preparedEvent';
-import { groupCommandCost } from '../../group/groupCommandCost';
 import GroupModel from '../../group/groupModel';
 
 type IConsumerCreditsArgs = {
