@@ -25,6 +25,7 @@ import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import languageMessage from './languageMessage';
 import { COMMANDS_TYPES_ENUM } from './commandsTypeEnum';
 import configMessage from './configMessage';
+import chargeMessage from './chargeMessage';
 
 type ICommands = {
   [key in COMMANDS_TYPES_ENUM]: {
@@ -186,6 +187,12 @@ const COMMANDS: ICommands = {
     description: 'See the bot configuration',
     example: '!config',
     action: configMessage,
+  },
+  [COMMANDS_TYPES_ENUM.CHARGE]: {
+    name: '!charge',
+    description: 'Charge the group credits',
+    example: '!charge <qty>',
+    action: chargeMessage,
   },
 };
 

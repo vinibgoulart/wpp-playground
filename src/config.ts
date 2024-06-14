@@ -24,6 +24,7 @@ const {
   ELEVENLABS_API_KEY,
   NODE_ENV,
   PORT,
+  WOOVI_API_KEY,
 } = process.env;
 
 const getMongoUri = () => {
@@ -53,4 +54,5 @@ export const config = {
   ELEVENLABS_API_KEY,
   NODE_ENV,
   PORT,
+  WOOVI_API_KEY,
 };
