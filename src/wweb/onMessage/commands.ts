@@ -1,27 +1,26 @@
+import { Message } from 'whatsapp-web.js';
+import textToSpeechMessage from './audio/textToSpeechMessage';
+import transcriptAudioMessage from './audio/transcriptAudioMessage';
 import groupIdMessage from './debug/groupIdMessage';
-import logsMessage from './debug/logsMessage';
+import githubMessage from './githubMessage';
+import gptConfigContextMessage from './gpt/gptConfigContextMessage';
 import gptMessage from './gpt/gptMessage';
 import resumeMessage from './gpt/resumeMessage';
-import startListeningMessage from './startListeningMessage';
-import stopListeningMessage from './stopListeningMessage';
+import resumeMessageQty from './gpt/resumeMessageQty';
 import helpMessage from './helpMessage';
 import initMessage from './initMessage';
 import authorMessage from './meme/authorMessage';
+import darksoulsMessage from './meme/darksoulsMessage';
 import drakeMessage from './meme/drakeMessage';
 import incrivelMessage from './meme/incrivelMessage';
+import interestelarMessage from './meme/interestelarMessage';
 import quoteMessage from './meme/quoteMessage';
+import senhoresMessage from './meme/senhoresMessage';
+import supremacyMessage from './meme/supremacyMessage';
 import tigerMessage from './meme/tigerMessage';
 import tradeOfferMessage from './meme/tradeOfferMessage';
-import gptConfigContextMessage from './gpt/gptConfigContextMessage';
-import { Message } from 'whatsapp-web.js';
-import githubMessage from './githubMessage';
-import resumeMessageQty from './gpt/resumeMessageQty';
-import interestelarMessage from './meme/interestelarMessage';
-import senhoresMessage from './meme/senhoresMessage';
-import textToSpeechMessage from './audio/textToSpeechMessage';
-import supremacyMessage from './meme/supremacyMessage';
-import darksoulsMessage from './meme/darksoulsMessage';
-import transcriptAudioMessage from './audio/transcriptAudioMessage';
+import startListeningMessage from './startListeningMessage';
+import stopListeningMessage from './stopListeningMessage';
 
 type Commands = Record<
   string,
@@ -166,10 +165,6 @@ const COMMANDS: Commands = {
     description: 'Show all available commands',
     example: '!help',
     action: helpMessage,
-  },
-  LOGS: {
-    name: '!logs',
-    action: logsMessage,
   },
   GITHUB: {
     name: '!github',
