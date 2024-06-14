@@ -3,6 +3,7 @@ import { logger } from 'src/telemetry/logger';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import { middleware } from '../../middleware/middleware';
+import COMMANDS from '../commands';
 
 const supremacyMessage = async (msg: Message) => {
   const text1 = msg.body.replace('!supremacy', '').trim();
@@ -34,4 +35,6 @@ const supremacyMessage = async (msg: Message) => {
   logger.info('Success');
 };
 
-export default middleware(supremacyMessage);
+export default middleware(supremacyMessage, {
+  cost: COMMANDS.SUPREMACY.cost,
+});

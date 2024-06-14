@@ -2,8 +2,9 @@ import { unlinkSync } from 'fs';
 import { createAudioFileFromText } from 'src/elevenlabs/textToSpeechFile.ts';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
+import COMMANDS from '../commands';
 
-const textToSpeechMessage = async (msg: Message) => {
+const audioMessage = async (msg: Message) => {
   let text;
 
   if (msg.hasQuotedMsg) {
@@ -22,7 +23,6 @@ const textToSpeechMessage = async (msg: Message) => {
   unlinkSync(fileName);
 };
 
-export default middleware(textToSpeechMessage, {
-  // rethink this cost
-  cost: 50,
+export default middleware(audioMessage, {
+  cost: COMMANDS.AUDIO.cost,
 });

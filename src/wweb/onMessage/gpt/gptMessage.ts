@@ -3,6 +3,7 @@ import { openaiCompletionsCreate } from 'src/openai/openaiCompletionsCreate';
 import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
+import COMMANDS from '../commands';
 
 const gptMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   const groupId = msg.id.remote;
@@ -19,4 +20,4 @@ const gptMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   msg.reply(response);
 };
 
-export default middleware(gptMessage, { cost: 5 });
+export default middleware(gptMessage, { cost: COMMANDS.GPT.cost });

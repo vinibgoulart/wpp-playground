@@ -2,6 +2,7 @@ import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message } from 'whatsapp-web.js';
 import { groupResumeMessages } from '../../../group/groupResumeMessages';
 import { middleware } from '../../middleware/middleware';
+import COMMANDS from '../commands';
 
 const resumeMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   const groupId = msg.id.remote;
@@ -21,5 +22,5 @@ const resumeMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
 
 export default middleware(resumeMessage, {
   isListening: true,
-  cost: 10,
+  cost: COMMANDS.RESUME.cost,
 });

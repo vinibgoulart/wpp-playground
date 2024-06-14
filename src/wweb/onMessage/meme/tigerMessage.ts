@@ -2,6 +2,7 @@ import { Message, MessageMedia } from 'whatsapp-web.js';
 import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
+import COMMANDS from '../commands';
 
 const tigerMessage = async (msg: Message) => {
   const text1 = msg.body.replace('!tiger', '').trim();
@@ -28,4 +29,6 @@ const tigerMessage = async (msg: Message) => {
   });
 };
 
-export default middleware(tigerMessage);
+export default middleware(tigerMessage, {
+  cost: COMMANDS.TIGER.cost,
+});

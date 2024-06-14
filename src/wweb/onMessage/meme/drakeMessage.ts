@@ -2,6 +2,7 @@ import { Message, MessageMedia } from 'whatsapp-web.js';
 import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
+import COMMANDS from '../commands';
 
 const drakeMessage = async (msg: Message) => {
   const [text0, text1] = msg.body
@@ -32,4 +33,6 @@ const drakeMessage = async (msg: Message) => {
   });
 };
 
-export default middleware(drakeMessage);
+export default middleware(drakeMessage, {
+  cost: COMMANDS.DRAKE.cost,
+});

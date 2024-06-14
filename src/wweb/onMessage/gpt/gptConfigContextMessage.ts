@@ -2,6 +2,7 @@ import GroupModel from 'src/group/groupModel';
 import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
+import COMMANDS from '../commands';
 
 const gptConfigContextMessage = async (
   msg: Message,
@@ -32,4 +33,6 @@ const gptConfigContextMessage = async (
   msg.react('✅');
 };
 
-export default middleware(gptConfigContextMessage, { cost: 2 });
+export default middleware(gptConfigContextMessage, {
+  cost: COMMANDS.GPT_CONFIG_CONTEXT.cost,
+});

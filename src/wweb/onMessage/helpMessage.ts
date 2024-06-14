@@ -15,4 +15,6 @@ const helpMessage = async (msg: Message) => {
   return msg.reply(reply);
 };
 
-export default middleware(helpMessage);
+export default middleware(helpMessage, {
+  cost: COMMANDS.HELP.cost,
+});

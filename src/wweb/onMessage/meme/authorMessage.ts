@@ -5,6 +5,7 @@ import { Message, MessageMedia } from 'whatsapp-web.js';
 import { getBase64 } from '../../../jimp/getBase64';
 import { splitTextIntoLines } from '../../../jimp/strings';
 import { middleware } from '../../middleware/middleware';
+import COMMANDS from '../commands';
 
 const authorMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   try {
@@ -70,4 +71,6 @@ const authorMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   }
 };
 
-export default middleware(authorMessage);
+export default middleware(authorMessage, {
+  cost: COMMANDS.AUTHOR.cost,
+});

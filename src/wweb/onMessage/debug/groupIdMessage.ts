@@ -1,6 +1,7 @@
 import { code } from 'src/utils/templates';
 import { middleware } from 'src/wweb/middleware/middleware';
 import { Message } from 'whatsapp-web.js';
+import COMMANDS from '../commands';
 
 const groupIdMessage = async (msg: Message) => {
   try {
@@ -10,4 +11,6 @@ const groupIdMessage = async (msg: Message) => {
   }
 };
 
-export default middleware(groupIdMessage);
+export default middleware(groupIdMessage, {
+  cost: COMMANDS.GROUP_ID.cost,
+});

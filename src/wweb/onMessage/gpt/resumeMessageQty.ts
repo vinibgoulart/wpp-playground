@@ -4,6 +4,7 @@ import { prompts } from 'src/openai/prompts';
 import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
+import COMMANDS from '../commands';
 
 const resumeMessageQty = async (msg: Message, preparedEvent: PreparedEvent) => {
   const qty = msg.body.replace('!resume-qty', '').trim();
@@ -57,5 +58,5 @@ const resumeMessageQty = async (msg: Message, preparedEvent: PreparedEvent) => {
 };
 
 export default middleware(resumeMessageQty, {
-  cost: 10,
+  cost: COMMANDS.RESUME_QTY.cost,
 });

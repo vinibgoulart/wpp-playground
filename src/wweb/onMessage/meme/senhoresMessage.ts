@@ -2,6 +2,7 @@ import { Message, MessageMedia } from 'whatsapp-web.js';
 import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
+import COMMANDS from '../commands';
 
 const senhoresMessage = async (msg: Message) => {
   const text1 = msg.body.replace('!senhores', '').trim();
@@ -29,4 +30,6 @@ const senhoresMessage = async (msg: Message) => {
   });
 };
 
-export default middleware(senhoresMessage);
+export default middleware(senhoresMessage, {
+  cost: COMMANDS.SENHORES.cost,
+});
