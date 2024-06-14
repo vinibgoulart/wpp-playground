@@ -14,7 +14,7 @@ const incrivelMessage = async (msg: Message) => {
   }
 
   const imgFlipCaptionResult = await imgflipCaption({
-    randomTemplatedId: '318009221',
+    templateId: '318009221',
     text0,
     text1,
   });

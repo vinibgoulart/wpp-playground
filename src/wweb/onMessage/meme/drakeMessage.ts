@@ -14,7 +14,7 @@ const drakeMessage = async (msg: Message) => {
   }
 
   const imgFlipCaptionResult = await imgflipCaption({
-    randomTemplatedId: '181913649',
+    templateId: '181913649',
     text0,
     text1,
   });

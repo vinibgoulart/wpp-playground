@@ -3,23 +3,22 @@ import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
 
-const tradeOfferMessage = async (msg: Message) => {
-  const [text0, text1] = msg.body
-    .replace('!trade-offer', '')
-    .split('-')
-    .map((text) => text.trim());
+const supremacyMessage = async (msg: Message) => {
+  const text1 = msg.body.replace('!supremacy', '').trim();
 
-  if (!text0 || !text1) {
+  if (!text1) {
+    console.log('No text1');
     return;
   }
 
   const imgFlipCaptionResult = await imgflipCaption({
-    templateId: '309868304',
-    text0,
+    templateId: '275700505',
     text1,
   });
 
   if (!imgFlipCaptionResult.success) {
+    console.log('No success', imgFlipCaptionResult.error);
+
     return msg.reply(imgFlipCaptionResult.error);
   }
 
@@ -30,6 +29,8 @@ const tradeOfferMessage = async (msg: Message) => {
   msg.reply(replyMedia, undefined, {
     sendMediaAsSticker: true,
   });
+
+  console.log('Success');
 };
 
-export default middleware(tradeOfferMessage);
+export default middleware(supremacyMessage);
