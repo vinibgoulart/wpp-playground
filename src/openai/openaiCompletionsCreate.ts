@@ -1,5 +1,5 @@
 import { logger } from 'src/telemetry/logger';
-import { PreparedEvent } from 'src/telemetry/prepared-event';
+import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { openai } from './openaiApi';
 import { OPENAI_MODEL_ENUM } from './openaiModelEnum';
 

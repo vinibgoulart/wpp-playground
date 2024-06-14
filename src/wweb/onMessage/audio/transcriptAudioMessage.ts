@@ -1,4 +1,4 @@
-import { PreparedEvent } from 'src/telemetry/prepared-event';
+import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { middleware } from 'src/wweb/middleware/middleware';
 import { Message } from 'whatsapp-web.js';
 import { processAndTranscribeAudio } from '../../../openai/processAndTranscribeAudio';

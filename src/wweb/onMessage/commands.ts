@@ -1,4 +1,4 @@
-import { PreparedEvent } from 'src/telemetry/prepared-event';
+import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message } from 'whatsapp-web.js';
 import textToSpeechMessage from './audio/textToSpeechMessage';
 import transcriptAudioMessage from './audio/transcriptAudioMessage';

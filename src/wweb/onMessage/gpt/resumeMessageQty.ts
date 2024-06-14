@@ -1,7 +1,7 @@
 import { messageParseToGpt } from 'src/group/message/messageParseToGpt';
 import { openaiCompletionsCreate } from 'src/openai/openaiCompletionsCreate';
 import { prompts } from 'src/openai/prompts';
-import { PreparedEvent } from 'src/telemetry/prepared-event';
+import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
 

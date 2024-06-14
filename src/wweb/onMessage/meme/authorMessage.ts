@@ -1,6 +1,6 @@
 import Jimp from 'jimp';
 import { logger } from 'src/telemetry/logger';
-import { PreparedEvent } from 'src/telemetry/prepared-event';
+import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { getBase64 } from '../../../jimp/getBase64';
 import { splitTextIntoLines } from '../../../jimp/strings';
