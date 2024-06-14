@@ -1,6 +1,7 @@
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../middleware/middleware';
 import COMMANDS from './commands';
+import { COMMANDS_COST } from './commandsCost';
 
 const helpMessage = async (msg: Message) => {
   let reply = '*Here are all the commands available:* \n\n';
@@ -16,5 +17,5 @@ const helpMessage = async (msg: Message) => {
 };
 
 export default middleware(helpMessage, {
-  cost: COMMANDS.HELP.cost,
+  cost: COMMANDS_COST.HELP,
 });

@@ -3,6 +3,7 @@ import { createAudioFileFromText } from 'src/elevenlabs/textToSpeechFile.ts';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
 import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const audioMessage = async (msg: Message) => {
   let text;
@@ -24,5 +25,5 @@ const audioMessage = async (msg: Message) => {
 };
 
 export default middleware(audioMessage, {
-  cost: COMMANDS.AUDIO.cost,
+  cost: COMMANDS_COST.AUDIO,
 });

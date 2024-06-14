@@ -22,31 +22,9 @@ import tradeOfferMessage from './meme/tradeOfferMessage';
 import startListeningMessage from './startListeningMessage';
 import stopListeningMessage from './stopListeningMessage';
 import { PreparedEvent } from 'src/telemetry/preparedEvent';
-
-enum COMMANDS_TYPES_ENUM {
-  GPT_CONFIG_CONTEXT = 'GPT_CONFIG_CONTEXT',
-  GPT = 'GPT',
-  AUDIO = 'AUDIO',
-  TRANSCRIPT = 'TRANSCRIPT',
-  AUTHOR = 'AUTHOR',
-  QUOTE = 'QUOTE',
-  DRAKE = 'DRAKE',
-  INCRIVEL = 'INCRIVEL',
-  TIGER = 'TIGER',
-  TRADE_OFFER = 'TRADE_OFFER',
-  INTERESTELAR = 'INTERESTELAR',
-  SENHORES = 'SENHORES',
-  SUPREMACY = 'SUPREMACY',
-  DARKSOULS = 'DARKSOULS',
-  RESUME_QTY = 'RESUME_QTY',
-  RESUME = 'RESUME',
-  INIT = 'INIT',
-  START_LISTENING = 'START_LISTENING',
-  STOP_LISTENING = 'STOP_LISTENING',
-  GROUP_ID = 'GROUP_ID',
-  HELP = 'HELP',
-  GITHUB = 'GITHUB',
-}
+import languageMessage from './languageMessage';
+import { COMMANDS_TYPES_ENUM } from './commandsTypeEnum';
+import { COMMANDS_COST } from './commandsCost';
 
 type ICommands = {
   [key in COMMANDS_TYPES_ENUM]: {
@@ -65,14 +43,14 @@ const COMMANDS: ICommands = {
     description: 'Set the context for the GPT',
     example: '!gpt-config-context You are a bot in a marketing group chat',
     action: gptConfigContextMessage,
-    cost: 2,
+    cost: COMMANDS_COST.GPT_CONFIG_CONTEXT,
   },
   [COMMANDS_TYPES_ENUM.GPT]: {
     name: '!gpt',
     description: 'Ask to Chat GPT',
     example: '!gpt Hi, how are you?',
     action: gptMessage,
-    cost: 5,
+    cost: COMMANDS_COST.GPT,
   },
   // text to speech commands
   [COMMANDS_TYPES_ENUM.AUDIO]: {
@@ -80,14 +58,14 @@ const COMMANDS: ICommands = {
     description: 'Convert text to speech',
     example: '!audio good morning group!',
     action: audioMessage,
-    cost: 50,
+    cost: COMMANDS_COST.AUDIO,
   },
   [COMMANDS_TYPES_ENUM.TRANSCRIPT]: {
     name: '!transcript',
     description: 'Convert audio from the quoted message to text',
     example: '!transcript',
     action: transcriptMessage,
-    cost: 12,
+    cost: COMMANDS_COST.TRANSCRIPT,
   },
   // memes commands
   [COMMANDS_TYPES_ENUM.AUTHOR]: {
@@ -95,7 +73,7 @@ const COMMANDS: ICommands = {
     description: 'Get the author of a message in a sticker with the message',
     example: '!author',
     action: authorMessage,
-    cost: 0,
+    cost: COMMANDS_COST.AUTHOR,
   },
   [COMMANDS_TYPES_ENUM.QUOTE]: {
     name: '!quote',
@@ -103,35 +81,35 @@ const COMMANDS: ICommands = {
       'Create a sticker with the message in a random meme template, or with the image from the quoted message',
     example: '!quote',
     action: quoteMessage,
-    cost: 0,
+    cost: COMMANDS_COST.QUOTE,
   },
   [COMMANDS_TYPES_ENUM.DRAKE]: {
     name: '!drake',
     description: 'Create a sticker with Drake meme using the message',
     example: '!drake barcelona - real madrid',
     action: drakeMessage,
-    cost: 0,
+    cost: COMMANDS_COST.DRAKE,
   },
   [COMMANDS_TYPES_ENUM.INCRIVEL]: {
     name: '!incrivel',
     description: 'Create a sticker with Mr. Incredible meme using the message',
     example: '!incrivel java - script',
     action: incrivelMessage,
-    cost: 0,
+    cost: COMMANDS_COST.INCRIVEL,
   },
   [COMMANDS_TYPES_ENUM.TIGER]: {
     name: '!tiger',
     description: 'Create a sticker with Tiger meme using the message',
     example: '!tiger cashback pix',
     action: tigerMessage,
-    cost: 0,
+    cost: COMMANDS_COST.TIGER,
   },
   [COMMANDS_TYPES_ENUM.TRADE_OFFER]: {
     name: '!trade-offer',
     description: 'Create a sticker with trade offer meme using the message',
     example: '!trade-offer bean - delicious coffe',
     action: tradeOfferMessage,
-    cost: 0,
+    cost: COMMANDS_COST.TRADE_OFFER,
   },
   [COMMANDS_TYPES_ENUM.INTERESTELAR]: {
     name: '!interestelar',
@@ -139,7 +117,7 @@ const COMMANDS: ICommands = {
       'Create a sticker with interestelar this little maneuver is gonna cost us 51 years meme',
     example: '!interestelar finish this issue',
     action: interestelarMessage,
-    cost: 0,
+    cost: COMMANDS_COST.INTERESTELAR,
   },
   [COMMANDS_TYPES_ENUM.SENHORES]: {
     name: '!senhores',
@@ -147,7 +125,7 @@ const COMMANDS: ICommands = {
       'Create a sticker with Gus Fring meme using the message "Senhores" and the message',
     example: '!senhores good morning',
     action: senhoresMessage,
-    cost: 0,
+    cost: COMMANDS_COST.SENHORES,
   },
   [COMMANDS_TYPES_ENUM.SUPREMACY]: {
     name: '!supremacy',
@@ -155,14 +133,14 @@ const COMMANDS: ICommands = {
       'Create a sticker with i believe in ---- supremacy meme using the message',
     example: '!supremacy taylor swift',
     action: supremacyMessage,
-    cost: 0,
+    cost: COMMANDS_COST.SUPREMACY,
   },
   [COMMANDS_TYPES_ENUM.DARKSOULS]: {
     name: '!darksouls',
     description: 'Create a sticker with Dark Souls meme using the message',
     example: '!darksouls jr startup dev - sr faang dev',
     action: darksoulsMessage,
-    cost: 0,
+    cost: COMMANDS_COST.DARKSOULS,
   },
   // resume commands
   [COMMANDS_TYPES_ENUM.RESUME_QTY]: {
@@ -170,55 +148,62 @@ const COMMANDS: ICommands = {
     description: 'Resume the last specified number of messages',
     example: '!resume-qty <qty>',
     action: resumeMessageQty,
-    cost: 10,
+    cost: COMMANDS_COST.RESUME_QTY,
   },
   [COMMANDS_TYPES_ENUM.RESUME]: {
     name: '!resume',
     description: 'Resume the last group messages',
     example: '!resume',
     action: resumeMessage,
-    cost: 10,
+    cost: COMMANDS_COST.RESUME,
   },
   // bot commands
   [COMMANDS_TYPES_ENUM.INIT]: {
     name: '!init',
     action: initMessage,
-    cost: 0,
+    cost: COMMANDS_COST.INIT,
   },
   [COMMANDS_TYPES_ENUM.START_LISTENING]: {
     name: '!start-listening',
     description: 'Start to listening messages',
     example: '!start-listening',
     action: startListeningMessage,
-    cost: 0,
+    cost: COMMANDS_COST.START_LISTENING,
   },
   [COMMANDS_TYPES_ENUM.STOP_LISTENING]: {
     name: '!stop-listening',
     description: 'Stop to listening messages',
     example: '!stop-listening',
     action: stopListeningMessage,
-    cost: 0,
+    cost: COMMANDS_COST.STOP_LISTENING,
   },
   [COMMANDS_TYPES_ENUM.GROUP_ID]: {
     name: '!group-id',
     description: 'Get the group id',
     example: '!group-id',
     action: groupIdMessage,
-    cost: 0,
+    cost: COMMANDS_COST.GROUP_ID,
   },
   [COMMANDS_TYPES_ENUM.HELP]: {
     name: '!help',
     description: 'Show all available commands',
     example: '!help',
     action: helpMessage,
-    cost: 0,
+    cost: COMMANDS_COST.HELP,
   },
   [COMMANDS_TYPES_ENUM.GITHUB]: {
     name: '!github',
     description: 'Get the github repository link',
     example: '!github',
     action: githubMessage,
-    cost: 0,
+    cost: COMMANDS_COST.GITHUB,
+  },
+  [COMMANDS_TYPES_ENUM.LANGUAGE]: {
+    name: '!language',
+    description: 'Set the language of the bot',
+    example: '!language <ptbr | en>',
+    action: languageMessage,
+    cost: COMMANDS_COST.LANGUAGE,
   },
 };
 

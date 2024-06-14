@@ -4,6 +4,7 @@ import { Message, MessageMedia } from 'whatsapp-web.js';
 import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import { middleware } from '../../middleware/middleware';
 import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const supremacyMessage = async (msg: Message) => {
   const text1 = msg.body.replace('!supremacy', '').trim();
@@ -36,5 +37,5 @@ const supremacyMessage = async (msg: Message) => {
 };
 
 export default middleware(supremacyMessage, {
-  cost: COMMANDS.SUPREMACY.cost,
+  cost: COMMANDS_COST.SUPREMACY,
 });

@@ -3,6 +3,7 @@ import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
 import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const tigerMessage = async (msg: Message) => {
   const text1 = msg.body.replace('!tiger', '').trim();
@@ -30,5 +31,5 @@ const tigerMessage = async (msg: Message) => {
 };
 
 export default middleware(tigerMessage, {
-  cost: COMMANDS.TIGER.cost,
+  cost: COMMANDS_COST.TIGER,
 });

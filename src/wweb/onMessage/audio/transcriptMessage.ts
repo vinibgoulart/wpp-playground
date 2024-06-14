@@ -3,7 +3,7 @@ import { middleware } from 'src/wweb/middleware/middleware';
 import { Message } from 'whatsapp-web.js';
 import { processAndTranscribeAudio } from '../../../openai/processAndTranscribeAudio';
 import { handleQuotedAudioMessage } from '../../../utils/handleQuotedAudioMessage';
-import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const transcriptMessage = async (
   msg: Message,
@@ -25,5 +25,5 @@ const transcriptMessage = async (
 };
 
 export default middleware(transcriptMessage, {
-  cost: COMMANDS.TRANSCRIPT.cost,
+  cost: COMMANDS_COST.TRANSCRIPT,
 });

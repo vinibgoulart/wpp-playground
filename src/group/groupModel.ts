@@ -3,6 +3,7 @@ import { model, Schema } from 'mongoose';
 import { IMessage, messageSchema } from './message/messageSchema';
 import { groupGptSchema, IGroupGpt } from './gpt/groupGptSchema';
 import { groupResumeSchema, IGroupResume } from './resume/resumeSchema';
+import { GROUP_LANGUAGE_ENUM } from './groupLanguageEnum';
 
 type IGroup = {
   groupId: string;
@@ -50,6 +51,7 @@ const GroupSchema = new Schema<GroupDocument>(
     lng: {
       type: String,
       required: false,
+      enum: GROUP_LANGUAGE_ENUM,
       description: 'GroupConfig lng',
       default: 'ptbr',
     },

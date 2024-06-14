@@ -3,6 +3,7 @@ import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
 import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const darksoulsMessage = async (msg: Message) => {
   const [text0, text1] = msg.body
@@ -34,5 +35,5 @@ const darksoulsMessage = async (msg: Message) => {
 };
 
 export default middleware(darksoulsMessage, {
-  cost: COMMANDS.DARKSOULS.cost,
+  cost: COMMANDS_COST.DARKSOULS,
 });

@@ -5,6 +5,7 @@ import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
 import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const resumeMessageQty = async (msg: Message, preparedEvent: PreparedEvent) => {
   const qty = msg.body.replace('!resume-qty', '').trim();
@@ -58,5 +59,5 @@ const resumeMessageQty = async (msg: Message, preparedEvent: PreparedEvent) => {
 };
 
 export default middleware(resumeMessageQty, {
-  cost: COMMANDS.RESUME_QTY.cost,
+  cost: COMMANDS_COST.RESUME_QTY,
 });

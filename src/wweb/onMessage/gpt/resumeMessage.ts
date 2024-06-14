@@ -3,6 +3,7 @@ import { Message } from 'whatsapp-web.js';
 import { groupResumeMessages } from '../../../group/groupResumeMessages';
 import { middleware } from '../../middleware/middleware';
 import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const resumeMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   const groupId = msg.id.remote;
@@ -22,5 +23,5 @@ const resumeMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
 
 export default middleware(resumeMessage, {
   isListening: true,
-  cost: COMMANDS.RESUME.cost,
+  cost: COMMANDS_COST.RESUME,
 });

@@ -4,6 +4,7 @@ import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
 import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const gptMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   const groupId = msg.id.remote;
@@ -20,4 +21,4 @@ const gptMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   msg.reply(response);
 };
 
-export default middleware(gptMessage, { cost: COMMANDS.GPT.cost });
+export default middleware(gptMessage, { cost: COMMANDS_COST.GPT });

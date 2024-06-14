@@ -3,6 +3,7 @@ import { imgflipCaption } from '../../../imgflip/imgflipCaption';
 import imageToBase64 from 'image-to-base64';
 import { middleware } from '../../middleware/middleware';
 import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const interestelarMessage = async (msg: Message) => {
   const text0 = msg.body.replace('!interestelar', '').trim();
@@ -30,5 +31,5 @@ const interestelarMessage = async (msg: Message) => {
 };
 
 export default middleware(interestelarMessage, {
-  cost: COMMANDS.INTERESTELAR.cost,
+  cost: COMMANDS_COST.INTERESTELAR,
 });

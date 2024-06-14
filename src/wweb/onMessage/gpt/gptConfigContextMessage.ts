@@ -3,6 +3,7 @@ import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
 import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const gptConfigContextMessage = async (
   msg: Message,
@@ -34,5 +35,5 @@ const gptConfigContextMessage = async (
 };
 
 export default middleware(gptConfigContextMessage, {
-  cost: COMMANDS.GPT_CONFIG_CONTEXT.cost,
+  cost: COMMANDS_COST.GPT_CONFIG_CONTEXT,
 });

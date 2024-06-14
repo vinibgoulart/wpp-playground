@@ -6,6 +6,7 @@ import { getBase64 } from '../../../jimp/getBase64';
 import { splitTextIntoLines } from '../../../jimp/strings';
 import { middleware } from '../../middleware/middleware';
 import COMMANDS from '../commands';
+import { COMMANDS_COST } from '../commandsCost';
 
 const authorMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
   try {
@@ -72,5 +73,5 @@ const authorMessage = async (msg: Message, preparedEvent: PreparedEvent) => {
 };
 
 export default middleware(authorMessage, {
-  cost: COMMANDS.AUTHOR.cost,
+  cost: COMMANDS_COST.AUTHOR,
 });
