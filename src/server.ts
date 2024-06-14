@@ -1,6 +1,9 @@
+import { createServer } from 'http';
 import { app } from './app';
 import { connectDatabase } from './mongo';
 import { logger } from './telemetry/logger';
+import { config } from './config';
+import http from './http';
 
 export const server = async () => {
   try {
@@ -11,4 +14,10 @@ export const server = async () => {
   }
 
   app();
+
+  const httpServer = createServer(http);
+
+  httpServer.listen(config.PORT, () => {
+    logger.info(`Server is running on port ${config.PORT}`);
+  });
 };
