@@ -4,6 +4,10 @@ import { IMessage, messageSchema } from './message/messageSchema';
 import { groupGptSchema, IGroupGpt } from './gpt/groupGptSchema';
 import { groupResumeSchema, IGroupResume } from './resume/resumeSchema';
 import { GROUP_LANGUAGE_ENUM } from './groupLanguageEnum';
+import {
+  groupCreditsSchema,
+  IGroupCredits,
+} from './credits/groupCreditsSchema';
 
 type IGroup = {
   groupId: string;
@@ -13,6 +17,7 @@ type IGroup = {
   gpt: IGroupGpt;
   lng: string;
   credits: number;
+  creditsHistory: IGroupCredits[];
 };
 
 export type GroupDocument = Document & IGroup;
@@ -58,6 +63,10 @@ const GroupSchema = new Schema<GroupDocument>(
     credits: {
       type: Number,
       default: 200,
+    },
+    creditsHistory: {
+      type: [groupCreditsSchema],
+      default: [],
     },
     removedAt: {
       type: Date,

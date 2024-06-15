@@ -1,9 +1,9 @@
 import express from 'express';
+import { wooviWebhookChargeCompleted } from './woovi/webhook/wooviWebhookChargeCompleted';
 
 const http = express();
+http.use(express.json());
 
-http.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+http.post('/webhook/woovi/charge', wooviWebhookChargeCompleted);
 
 export default http;
