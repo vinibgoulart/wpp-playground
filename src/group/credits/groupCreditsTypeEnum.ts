@@ -1,0 +1,4 @@
+export enum GROUP_CREDITS_TYPE_ENUM {
+  CREDIT = 'CREDIT',
+  DEBIT = 'DEBIT',
+}

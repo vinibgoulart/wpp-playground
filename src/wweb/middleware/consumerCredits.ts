@@ -2,6 +2,7 @@ import { Message } from 'whatsapp-web.js';
 
 import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import GroupModel from '../../group/groupModel';
+import { GROUP_CREDITS_TYPE_ENUM } from 'src/group/credits/groupCreditsTypeEnum';
 
 type IConsumerCreditsArgs = {
   msg: Message;
@@ -28,6 +29,18 @@ export const consumerCredits = async ({
     };
   }
 
+  const hasEntry = group.creditsHistory.some(
+    (entry) =>
+      entry.messageId === msg.id.id &&
+      entry.type === GROUP_CREDITS_TYPE_ENUM.DEBIT,
+  );
+
+  if (hasEntry) {
+    return {
+      error: 'Group already debited for this message',
+    };
+  }
+
   preparedEvent.patchMetadata({ cost });
   preparedEvent.patchMetadata({ groupCredits: group.credits });
   if (group.credits < cost) {
@@ -45,6 +58,13 @@ export const consumerCredits = async ({
     {
       $set: {
         credits: creditsUpdated,
+      },
+      $push: {
+        creditsHistory: {
+          type: GROUP_CREDITS_TYPE_ENUM.DEBIT,
+          value: cost,
+          messageId: msg.id.id,
+        },
       },
     },
     {
