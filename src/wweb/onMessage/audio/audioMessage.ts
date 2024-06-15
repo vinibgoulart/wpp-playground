@@ -2,7 +2,6 @@ import { unlinkSync } from 'fs';
 import { createAudioFileFromText } from 'src/elevenlabs/textToSpeechFile.ts';
 import { Message, MessageMedia } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
-import COMMANDS from '../commands';
 import { COMMANDS_COST } from '../commandsCost';
 
 const audioMessage = async (msg: Message) => {
@@ -13,6 +12,11 @@ const audioMessage = async (msg: Message) => {
     text = quote?.body.replace('!audio', '').trim() || '';
   } else {
     text = msg.body.replace('!audio', '').trim();
+  }
+
+  if (text.length > 200) {
+    await msg.reply('Text is too long, max 200 characters');
+    return;
   }
 
   const fileName = await createAudioFileFromText(text);
@@ -26,4 +30,6 @@ const audioMessage = async (msg: Message) => {
 
 export default middleware(audioMessage, {
   cost: COMMANDS_COST.AUDIO,
+  costByCaractere: true,
+  command: '!audio',
 });
