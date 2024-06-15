@@ -3,6 +3,7 @@ import { Message } from 'whatsapp-web.js';
 import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { consumerCredits } from './consumerCredits';
 import { isListening as _isListening } from './isListening';
+import { config } from 'src/config';
 
 type MiddlewareOptions = {
   isListening?: boolean;
@@ -18,11 +19,11 @@ export const middleware = (
     // if onlyOwner is true, the message will only be processed if it is sent by the owner,
     // otherwise it will only be processed if it is not sent by the owner
 
+    const isDevelopment = config.NODE_ENV === 'development';
+
     if (onlyOwner) {
       if (!msg.fromMe) return;
     } else {
-      const isDevelopment = process.env.NODE_ENV === 'development';
-
       if (msg.fromMe && !isDevelopment) return;
     }
 
@@ -32,7 +33,9 @@ export const middleware = (
       if (error) {
         msg.reply(error);
 
-        return;
+        if (!isDevelopment) {
+          return;
+        }
       }
     }
 

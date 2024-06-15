@@ -4,8 +4,8 @@ import { prompts } from 'src/openai/prompts';
 import { PreparedEvent } from 'src/telemetry/preparedEvent';
 import { Message } from 'whatsapp-web.js';
 import { middleware } from '../../middleware/middleware';
-import COMMANDS from '../commands';
 import { COMMANDS_COST } from '../commandsCost';
+import { config } from 'src/config';
 
 const resumeMessageQty = async (msg: Message, preparedEvent: PreparedEvent) => {
   const qty = msg.body.replace('!resume-qty', '').trim();
@@ -20,7 +20,7 @@ const resumeMessageQty = async (msg: Message, preparedEvent: PreparedEvent) => {
 
   const chat = await msg.getChat();
 
-  const isDevelopment = process.env.NODE_ENV === 'development';
+  const isDevelopment = config.NODE_ENV === 'development';
 
   const messages = await chat.fetchMessages({
     limit: Number(qty) + 1,
