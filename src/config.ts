@@ -25,6 +25,7 @@ const {
   NODE_ENV,
   PORT,
   WOOVI_API_KEY,
+  WOOVI_AUTHORIZATION_WEBHOOK,
 } = process.env;
 
 const getMongoUri = () => {
@@ -55,4 +56,5 @@ export const config = {
   NODE_ENV,
   PORT,
   WOOVI_API_KEY,
+  WOOVI_AUTHORIZATION_WEBHOOK,
 };
