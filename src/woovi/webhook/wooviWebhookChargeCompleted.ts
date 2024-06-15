@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { config } from 'src/config';
 import { groupCreditsAdd } from 'src/group/groupCreditsAdd';
 import { logger } from 'src/telemetry/logger';
 
@@ -33,6 +34,18 @@ export const wooviWebhookChargeCompleted = async (
   req: Request,
   res: Response,
 ): Promise<void> => {
+  if (!config.WOOVI_AUTHORIZATION_WEBHOOK) {
+    res.status(200).json({ message: 'Webhook received' });
+    return;
+  }
+
+  const authorization = req.headers.Authorization;
+
+  if (authorization !== config.WOOVI_AUTHORIZATION_WEBHOOK) {
+    res.status(401).json({ message: 'Unauthorized' });
+    return;
+  }
+
   const body = req.body as IWooviWebhookChargeCompleted;
   if (body.event !== 'OPENPIX:CHARGE_COMPLETED') {
     res.status(200).json({ message: 'Webhook received' });
