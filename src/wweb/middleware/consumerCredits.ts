@@ -45,7 +45,7 @@ export const consumerCredits = async ({
   preparedEvent.patchMetadata({ groupCredits: group.credits });
   if (group.credits < cost) {
     return {
-      error: `Insufficient credit, current: ${group.credits} needed: ${cost}`,
+      error: `Insufficient credit, current: ${group.credits} needed: ${cost}. Run !charge <value> to add credits.`,
     };
   }
 
