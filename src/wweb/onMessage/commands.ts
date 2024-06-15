@@ -26,6 +26,7 @@ import languageMessage from './languageMessage';
 import { COMMANDS_TYPES_ENUM } from './commandsTypeEnum';
 import configMessage from './configMessage';
 import chargeMessage from './chargeMessage';
+import creditsMessage from './creditsMessage';
 
 type ICommands = {
   [key in COMMANDS_TYPES_ENUM]: {
@@ -193,6 +194,12 @@ const COMMANDS: ICommands = {
     description: 'Charge the group credits',
     example: '!charge <qty>',
     action: chargeMessage,
+  },
+  [COMMANDS_TYPES_ENUM.CREDITS]: {
+    name: '!credits',
+    description: 'Show the group credits',
+    example: '!credits',
+    action: creditsMessage,
   },
 };
 
