@@ -39,7 +39,7 @@ export const wooviWebhookChargeCompleted = async (
     return;
   }
 
-  const authorization = req.headers.Authorization;
+  const authorization = req.query.authorization as string;
 
   if (authorization !== config.WOOVI_AUTHORIZATION_WEBHOOK) {
     res.status(401).json({ message: 'Unauthorized' });
@@ -50,6 +50,12 @@ export const wooviWebhookChargeCompleted = async (
   if (body.event !== 'OPENPIX:CHARGE_COMPLETED') {
     res.status(200).json({ message: 'Webhook received' });
     logger.error(`Invalid event charge woovi: ${body.event}`);
+    return;
+  }
+
+  if (!body.charge) {
+    res.status(200).json({ message: 'Webhook received' });
+    logger.error('Charge not found in woovi webhook');
     return;
   }
 
