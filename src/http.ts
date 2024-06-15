@@ -4,6 +4,6 @@ import { wooviWebhookChargeCompleted } from './woovi/webhook/wooviWebhookChargeC
 const http = express();
 http.use(express.json());
 
-http.post('/webhook/woovi/charge', wooviWebhookChargeCompleted);
+http.post('/api/webhook/woovi/charge', wooviWebhookChargeCompleted);
 
 export default http;
