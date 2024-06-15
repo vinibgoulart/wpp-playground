@@ -34,10 +34,6 @@ export const wooviWebhookChargeCompleted = async (
   res: Response,
 ): Promise<void> => {
   const body = req.body as IWooviWebhookChargeCompleted;
-
-  console.log({ req });
-  console.log({ bd: req.body });
-
   if (body.event !== 'OPENPIX:CHARGE_COMPLETED') {
     res.status(200).json({ message: 'Webhook received' });
     logger.error(`Invalid event charge woovi: ${body.event}`);
@@ -60,12 +56,18 @@ export const wooviWebhookChargeCompleted = async (
     return;
   }
 
-  await groupCreditsAdd({
+  const groupCreditsAddResponse = await groupCreditsAdd({
     groupId: groupId?.value as string,
     credits: Number(body.charge.value),
     messageId: body.charge.correlationID,
     providerChargeId: body.charge.identifier,
   });
+
+  if (groupCreditsAddResponse.error) {
+    logger.error(
+      `Error adding credits to group: ${groupCreditsAddResponse.error}`,
+    );
+  }
 
   res.status(200).json({ message: 'Webhook received' });
 };

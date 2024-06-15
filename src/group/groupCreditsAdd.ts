@@ -32,10 +32,14 @@ export const groupCreditsAdd = async (args: IGroupCreditsAddArgs) => {
     };
   }
 
+  const newCredits = group.credits + args.credits;
+
   const groupUpdated = await GroupModel.findOneAndUpdate(
     { groupId: args.groupId },
     {
-      $inc: { credits: args.credits },
+      $set: {
+        credits: newCredits,
+      },
       $push: {
         creditsHistory: {
           type: GROUP_CREDITS_TYPE_ENUM.CREDIT,
