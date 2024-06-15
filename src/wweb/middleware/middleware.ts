@@ -29,12 +29,11 @@ export const middleware = (
     if (cost) {
       const { error } = await consumerCredits({ msg, preparedEvent, cost });
 
-      // if (error) {
-      //   // Reply with the error message
-      //   msg.reply(error);
+      if (error) {
+        msg.reply(error);
 
-      //   return;
-      // }
+        return;
+      }
     }
 
     if (isListening) {
