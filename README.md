@@ -42,7 +42,7 @@ The main goal of this project is to provide an efficient way to summarize group 
 - Copy envs
 
 ```bash
-  cp .env.local .env
+  cp .env.example .env
 ```
 
 - Start the server
@@ -60,7 +60,7 @@ The main goal of this project is to provide an efficient way to summarize group 
 - Copy envs
 
 ```bash
-  cp .env.docker .env
+  cp .env.example .env
 ```
 
 - Run only the database
