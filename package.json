@@ -49,7 +49,7 @@
     "qrcode-terminal": "^0.12.0",
     "tsup": "^8.1.0",
     "typescript": "^5.1.6",
-    "whatsapp-web.js": "^1.23.0",
+    "whatsapp-web.js": "^1.25.0",
     "wwebjs-mongo": "^1.1.0",
     "yt-get": "^1.1.2"
   },
